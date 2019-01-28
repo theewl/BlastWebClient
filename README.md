@@ -1,2 +1,2 @@
 # BlastWebClient
-An Electron application...
+An Electron application that satisfies the requirements outlined by Blast.
