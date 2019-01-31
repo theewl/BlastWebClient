@@ -1,0 +1,14 @@
+{
+  "name": "blastwebclient",
+  "version": "1.0.0",
+  "description": "UCI Capstone project. Blast Web Client will allow gamers to save and earn money by playing their favorite games.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Marcos Lopez",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^4.0.3"
+  }
+}
