@@ -16,7 +16,7 @@ function createWindow () {
     // code below allows us to run a Python script
 	let {PythonShell} = require('python-shell')
 	
-    PythonShell.run('./BlastAPI/src/Main.py',  null, function  (err, results)  {
+    PythonShell.run('Main.py',  null, function  (err, results)  {
         if  (err)  throw err;
         console.log('Main.py finished.');
         console.log('results', results);
