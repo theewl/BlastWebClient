@@ -50,4 +50,104 @@
       </body>
       
       </html>
+      <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Blast Desktop API</title>
+    </head>
+    <body>
+        <h1>Your Fornite Stats</h1>
+        <br>
+        <table id="table" border="1">
+            <tbody>
+                
+            </tbody>
+        </table>
+    </body>
+    <script>
+        let {PythonShell} = require('python-shell')
       
+        PythonShell.run('Main.py',  null, function  (err, results)  
+        {
+            if  (err)  throw err;
+            console.log('Main.py finished.');
+            console.log('results', results);
+
+        var mysql = require('mysql');
+
+            getStats(function(rows)
+            {
+                var html = '';
+                var totalKills = results[0].kills;
+                var totalDeaths = 0;
+                rows.forEach(function(row)
+                {
+                  //totalKills += row.kills;
+                  totalDeaths += row.deaths;
+                });
+
+                
+                    html += '<tr>';
+                    html += '<th>';
+                    html += 'Kills';
+                    html += '</th>';
+                    html += '<th>';
+                    html += 'Deaths';
+                    html += '</th>';
+                    html += '</tr>';
+                    html += '<tr>';
+                    html += '<td>';
+                    html += totalKills;
+                    html += '</td>';
+                    html += '<td>';
+                    html += totalDeaths;
+                    html += '</td>';
+                    html += '</tr>';
+                    
+                //put html in table
+                document.querySelector('#table > tbody').innerHTML = html;
+            });
+        });
+
+        function getStats(callback){
+            var mysql = require('mysql');
+
+            // Add the credentials to access your database
+            var connection = mysql.createConnection({
+            host: "MacBook-Air.local",
+            user: "guest",
+            password: "9879968b",
+            database: "fortniteINFO"
+            });
+
+            // connect to mysql
+            connection.connect(function(err) {
+                // in case of error
+                if(err){
+                    console.log(err.code);
+                    console.log(err.fatal);
+                }
+            });
+
+            // Perform a query
+            $query = 'SELECT `kills`,`deaths` FROM `stats` LIMIT 10';
+
+            connection.query($query, function(err, rows, fields) {
+                if(err){
+                    console.log("An error ocurred performing the query.");
+                    console.log(err);
+                    return;
+                }
+
+                callback(rows);
+
+                console.log("Query succesfully executed");
+            });
+
+            // Close the connection
+            connection.end(function(){
+            });
+        }
+    </script>
+</html>
