@@ -14,25 +14,41 @@
         </table>
     </body>
     <script>
-        let {PythonShell} = require('python-shell');
-      
+        let {PythonShell} = require('python-shell')
+        var html;
+        var Kills;
+        var Assists;
+        var Revives;
+        var Accuracy;
+        var DamageTaken;
+        var mysql = require('mysql');
+        var connection = mysql.createConnection({
+            host: "MacBook-Air.local",
+            user: "guest",
+            password: "9879968b",
+            database: "fortniteINFO"
+        });
         PythonShell.run('Main.py',  null, function  (err, results)  
         {
             if  (err)  throw err;
             console.log('Main.py finished.');
             console.log('results', results);
 
-        var mysql = require('mysql');
+            var mysql = require('mysql');
 
             getStats(function(rows)
             {
-                var html = '';
-                var totalKills = results[0].kills;
-                var totalDeaths = 0;
+                html = '';
+                Kills = parseInt(results[1]);
+                Assists = parseInt(results[2]);
+                Revives = parseInt(results[3]);
+                Accuracy = parseInt(results[4]);
+                DamageTaken = parseInt(results[5]);
+
                 rows.forEach(function(row)
                 {
                   //totalKills += row.kills;
-                  totalDeaths += row.deaths;
+                  //totalDeaths += row.deaths;
                 });
 
                 
@@ -41,15 +57,33 @@
                     html += 'Kills';
                     html += '</th>';
                     html += '<th>';
-                    html += 'Deaths';
+                    html += 'Assists';
+                    html += '</th>';
+                    html += '<th>';
+                    html += 'Revives';
+                    html += '</th>';
+                    html += '<th>';
+                    html += 'Accuracy';
+                    html += '</th>';
+                    html += '<th>';
+                    html += 'Damage Taken';
                     html += '</th>';
                     html += '</tr>';
                     html += '<tr>';
                     html += '<td>';
-                    html += totalKills;
+                    html += Kills;
                     html += '</td>';
                     html += '<td>';
-                    html += totalDeaths;
+                    html += Assists;
+                    html += '</td>';
+                    html += '<td>';
+                    html += Revives;
+                    html += '</td>';
+                    html += '<td>';
+                    html += Accuracy;
+                    html += '</td>';
+                    html += '<td>';
+                    html += DamageTaken;
                     html += '</td>';
                     html += '</tr>';
                     
@@ -58,31 +92,38 @@
             });
         });
 
-        function getStats(callback){
-            var mysql = require('mysql');
-
-            // Add the credentials to access your database
-            var connection = mysql.createConnection({
-            host: "MacBook-Air.local",
-            user: "guest",
-            password: "9879968b",
-            database: "fortniteINFO"
-            });
-
-            // connect to mysql
-            connection.connect(function(err) {
+        function getStats(callback)
+        {
+             // connect to mysql
+            connection.connect(function(err) 
+            {
                 // in case of error
                 if(err){
                     console.log(err.code);
                     console.log(err.fatal);
                 }
             });
+              // if connection is successful
+              var records = 
+              [
+                [Kills, Assists, Revives, Accuracy, DamageTaken]
+              ];
+              connection.query("INSERT INTO stats (kills,assists,revives, accuracy, damageTaken) VALUES ?", [records], function (err, result, fields) {
+                // if any error while executing above query, throw error
+                if (err) throw err;
+                // if there is no error, you have the result
+                console.log(result);
+                console.log("Number of rows affected : " + result.affectedRows);
+                console.log("Number of records affected with warning : " + result.warningCount);
+                console.log("Message from MySQL Server : " + result.message);
+              });
 
             // Perform a query
-            $query = 'SELECT `kills`,`deaths` FROM `stats` LIMIT 10';
+            $query = "SELECT * FROM `stats`";
 
             connection.query($query, function(err, rows, fields) {
-                if(err){
+                if(err)
+                {
                     console.log("An error ocurred performing the query.");
                     console.log(err);
                     return;
