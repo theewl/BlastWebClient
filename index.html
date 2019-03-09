@@ -103,20 +103,10 @@
                     console.log(err.fatal);
                 }
             });
-              // if connection is successful
-              var records = 
-              [
-                [Kills, Assists, Revives, Accuracy, DamageTaken]
-              ];
-              connection.query("INSERT INTO stats (kills,assists,revives, accuracy, damageTaken) VALUES ?", [records], function (err, result, fields) {
-                // if any error while executing above query, throw error
-                if (err) throw err;
-                // if there is no error, you have the result
-                console.log(result);
-                console.log("Number of rows affected : " + result.affectedRows);
-                console.log("Number of records affected with warning : " + result.warningCount);
-                console.log("Message from MySQL Server : " + result.message);
-              });
+            var sql = "INSERT INTO stats (kills,assists,revives,accuracy,damageTaken) VALUES ('" + Kills + "', '" + Assists + "', '" + Revives + "', '" + Accuracy + "', '" + DamageTaken + "')";
+            
+            // execute the insert statment
+            connection.query(sql);
 
             // Perform a query
             $query = "SELECT * FROM `stats`";
