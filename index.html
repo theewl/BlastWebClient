@@ -16,11 +16,13 @@
     <script>
         let {PythonShell} = require('python-shell')
         var html;
+
         var Kills;
         var Assists;
         var Revives;
         var Accuracy;
         var DamageTaken;
+
         var mysql = require('mysql');
         var connection = mysql.createConnection({
             host: "MacBook-Air.local",
@@ -30,7 +32,21 @@
         });
         PythonShell.run('Main.py',  null, function  (err, results)  
         {
+            //Should read every replay file, not just one 
+            var Kills = parseInt(results[1]);
+            var Assists = parseInt(results[2]);
+            var Revives = parseInt(results[3]);
+            var Accuracy = parseInt(results[4]);
+            var DamageTaken = parseInt(results[5]);
+
+            var totalKills;
+            var totalAssists;
+            var totalRevives;
+            var totalAccuracy;
+            var totalDamageTaken;
+
             if  (err)  throw err;
+
             console.log('Main.py finished.');
             console.log('results', results);
 
@@ -39,16 +55,14 @@
             getStats(function(rows)
             {
                 html = '';
-                Kills = parseInt(results[1]);
-                Assists = parseInt(results[2]);
-                Revives = parseInt(results[3]);
-                Accuracy = parseInt(results[4]);
-                DamageTaken = parseInt(results[5]);
 
                 rows.forEach(function(row)
                 {
-                  //totalKills += row.kills;
-                  //totalDeaths += row.deaths;
+                  totalKills = row.TotalK;
+                  totalAssists = row.TotalA;
+                  totalRevives = row.TotalR;
+                  totalAccuracy = row.TotalAcc;
+                  totalDamageTaken = row.TotalDT;
                 });
 
                 
@@ -71,26 +85,26 @@
                     html += '</tr>';
                     html += '<tr>';
                     html += '<td>';
-                    html += Kills;
+                    html += totalKills;
                     html += '</td>';
                     html += '<td>';
-                    html += Assists;
+                    html += totalAssists;
                     html += '</td>';
                     html += '<td>';
-                    html += Revives;
+                    html += totalRevives;
                     html += '</td>';
                     html += '<td>';
-                    html += Accuracy;
+                    html += totalAccuracy;
                     html += '</td>';
                     html += '<td>';
-                    html += DamageTaken;
+                    html += totalDamageTaken;
                     html += '</td>';
                     html += '</tr>';
                     
                 //put html in table
                 document.querySelector('#table > tbody').innerHTML = html;
             });
-        });
+
 
         function getStats(callback)
         {
@@ -103,15 +117,34 @@
                     console.log(err.fatal);
                 }
             });
-            var sql = "INSERT INTO stats (kills,assists,revives,accuracy,damageTaken) VALUES ('" + Kills + "', '" + Assists + "', '" + Revives + "', '" + Accuracy + "', '" + DamageTaken + "')";
-            
+            /*
+            //Writes data to database!
+             - Should make it auto run or add a button to constantly update database
+             - Should stop adding old data to database 
+            */
+            /*
+            var sql = mysql.format("INSERT INTO stats (kills,assists,revives,accuracy,damageTaken) VALUES (?, ?, ?, ? ,?)", [Kills, Assists, Revives, Accuracy, DamageTaken]);
+
+            connection.query(sql, function (err, result) 
             // execute the insert statment
-            connection.query(sql);
+            {
+                if(err)
+                {
+                    console.log("An error ocurred performing the query.");
+                    console.log(err);
+                    return;
+                }
 
+                console.log("INSERT Query succesfully executed");
+
+            });
+            */
             // Perform a query
-            $query = "SELECT * FROM `stats`";
+            $query =  "SELECT SUM(kills) AS TotalK, SUM(assists) AS TotalA, SUM(revives) AS TotalR, SUM(accuracy) AS TotalAcc,SUM(damageTaken) AS TotalDT FROM stats;";
 
-            connection.query($query, function(err, rows, fields) {
+
+
+            connection.query($query, function(err, rows, fields, results) {
                 if(err)
                 {
                     console.log("An error ocurred performing the query.");
@@ -120,13 +153,14 @@
                 }
 
                 callback(rows);
-
-                console.log("Query succesfully executed");
+                console.log(rows[0].TotalK);
             });
+
 
             // Close the connection
             connection.end(function(){
             });
         }
+        });
     </script>
 </html>
