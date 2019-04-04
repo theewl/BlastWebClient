@@ -2,165 +2,107 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Blast Desktop API</title>
+        <title>Blast</title>
+        <style>
+            table {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                padding-bottom: 10px;
+            }
+
+            td, th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            tr:nth-child(even){background-color: #f2f2f2;}
+
+            tr:hover {background-color: #ddd;}
+
+            th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: rebeccapurple;
+                color: white;
+            }
+        </style>
     </head>
     <body>
-        <h1>Your Fornite Stats</h1>
-        <br>
-        <table id="table" border="1">
-            <tbody>
-                
-            </tbody>
-        </table>
-    </body>
-    <script>
-        let {PythonShell} = require('python-shell')
-        var html;
+        <h1>Blastphemy01's Recent Games</h1>
+        <script type="text/javascript">
+            'use strict';
+            const fs = require('fs');
+            let files = fs.readdirSync('/Users/Marcos/AppData/Local/FortniteGame/Saved/Demos');
 
-        var Kills;
-        var Assists;
-        var Revives;
-        var Accuracy;
-        var DamageTaken;
+            console.log(files.length)
 
-        var mysql = require('mysql');
-        var connection = mysql.createConnection({
-            host: "MacBook-Air.local",
-            user: "guest",
-            password: "9879968b",
-            database: "fortniteINFO"
-        });
-        PythonShell.run('Main.py',  null, function  (err, results)  
-        {
-            //Should read every replay file, not just one 
-            var Kills = parseInt(results[1]);
-            var Assists = parseInt(results[2]);
-            var Revives = parseInt(results[3]);
-            var Accuracy = parseInt(results[4]);
-            var DamageTaken = parseInt(results[5]);
+            let i = 1
 
-            var totalKills;
-            var totalAssists;
-            var totalRevives;
-            var totalAccuracy;
-            var totalDamageTaken;
+            files.forEach(fileName => {
+                // eliminations = results[0]
+                // assists = results[1]
+                // revives = results[2]
+                // accuracy = results[3]
+                // damage taken = results[4]
+                // placing = results[5]
+                let {PythonShell} = require('python-shell')
 
-            if  (err)  throw err;
+                let options = {
+                    args: [fileName]
+                };
 
-            console.log('Main.py finished.');
-            console.log('results', results);
+                let fields = ["eliminations", "assists", "revives", "accuracy", "damage taken", "position"]
 
-            var mysql = require('mysql');
+                PythonShell.run('./BlastAPI/src/Main.py', options, function  (err, results)  {
+                    if  (err)  throw err;
 
-            getStats(function(rows)
-            {
-                html = '';
+                    let title = document.createElement("h3")
+                    let text = document.createTextNode("Game " + i.toString())
+                    title.appendChild(text)
+                    document.body.append(title)
 
-                rows.forEach(function(row)
-                {
-                  totalKills = row.TotalK;
-                  totalAssists = row.TotalA;
-                  totalRevives = row.TotalR;
-                  totalAccuracy = row.TotalAcc;
-                  totalDamageTaken = row.TotalDT;
+                    let table = document.createElement("TABLE");
+                    table.setAttribute("id", fileName + "table");
+                    document.body.append(table);
+
+                    let row1 = document.createElement("TR");
+                    row1.setAttribute("id", fileName + "row1");
+                    document.getElementById(fileName + "table").appendChild(row1);
+
+                    let row2 = document.createElement("TR");
+                    row2.setAttribute("id", fileName + "row2");
+                    document.getElementById(fileName + "table").appendChild(row2);
+
+                    for(let i = 0; i < fields.length; i++)
+                    {
+                        let data = document.createElement("TH");
+                        let text = document.createTextNode(fields[i]);
+                        data.appendChild(text);
+                        document.getElementById(fileName + "row1").appendChild(data);
+                    }
+
+                    for(let i = 0; i < results.length; i++)
+                    {
+                        let data = document.createElement("TD");
+                        let text = document.createTextNode(results[i]);
+                        data.appendChild(text);
+                        document.getElementById(fileName + "row2").appendChild(data);
+                    }
+
+                    // quick, dirty solution to add some spacing
+                    let pad = document.createElement("p");
+                    let t = document.createTextNode("");
+                    pad.appendChild(t);
+                    document.getElementById(fileName + "table").appendChild(pad);
+
+                    i++
                 });
-
-                
-                    html += '<tr>';
-                    html += '<th>';
-                    html += 'Kills';
-                    html += '</th>';
-                    html += '<th>';
-                    html += 'Assists';
-                    html += '</th>';
-                    html += '<th>';
-                    html += 'Revives';
-                    html += '</th>';
-                    html += '<th>';
-                    html += 'Accuracy';
-                    html += '</th>';
-                    html += '<th>';
-                    html += 'Damage Taken';
-                    html += '</th>';
-                    html += '</tr>';
-                    html += '<tr>';
-                    html += '<td>';
-                    html += totalKills;
-                    html += '</td>';
-                    html += '<td>';
-                    html += totalAssists;
-                    html += '</td>';
-                    html += '<td>';
-                    html += totalRevives;
-                    html += '</td>';
-                    html += '<td>';
-                    html += totalAccuracy;
-                    html += '</td>';
-                    html += '<td>';
-                    html += totalDamageTaken;
-                    html += '</td>';
-                    html += '</tr>';
-                    
-                //put html in table
-                document.querySelector('#table > tbody').innerHTML = html;
             });
 
 
-        function getStats(callback)
-        {
-             // connect to mysql
-            connection.connect(function(err) 
-            {
-                // in case of error
-                if(err){
-                    console.log(err.code);
-                    console.log(err.fatal);
-                }
-            });
-            /*
-            //Writes data to database!
-             - Should make it auto run or add a button to constantly update database
-             - Should stop adding old data to database 
-            */
-            /*
-            var sql = mysql.format("INSERT INTO stats (kills,assists,revives,accuracy,damageTaken) VALUES (?, ?, ?, ? ,?)", [Kills, Assists, Revives, Accuracy, DamageTaken]);
+        </script>
+    </body>
 
-            connection.query(sql, function (err, result) 
-            // execute the insert statment
-            {
-                if(err)
-                {
-                    console.log("An error ocurred performing the query.");
-                    console.log(err);
-                    return;
-                }
-
-                console.log("INSERT Query succesfully executed");
-
-            });
-            */
-            // Perform a query
-            $query =  "SELECT SUM(kills) AS TotalK, SUM(assists) AS TotalA, SUM(revives) AS TotalR, SUM(accuracy) AS TotalAcc,SUM(damageTaken) AS TotalDT FROM stats;";
-
-
-
-            connection.query($query, function(err, rows, fields, results) {
-                if(err)
-                {
-                    console.log("An error ocurred performing the query.");
-                    console.log(err);
-                    return;
-                }
-
-                callback(rows);
-                console.log(rows[0].TotalK);
-            });
-
-
-            // Close the connection
-            connection.end(function(){
-            });
-        }
-        });
-    </script>
 </html>
