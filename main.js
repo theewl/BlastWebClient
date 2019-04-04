@@ -5,22 +5,13 @@ let win
 
 function createWindow () {
     // Create the browser window.
-    win = new BrowserWindow({ width: 800, height: 600})
+    win = new BrowserWindow({ width: 800, height: 600, icon:"./images/icon.ico"})
 
     // and load the index.html of the app.
     win.loadFile('index.html')
 
     // Open the DevTools.
     //win.webContents.openDevTools()
-
-    // code below allows us to run a Python script
-	let {PythonShell} = require('python-shell')
-	
-    PythonShell.run('Main.py',  null, function  (err, results)  {
-        if  (err)  throw err;
-        console.log('Main.py finished.');
-        console.log('results', results);
-    });
 
     // Emitted when the window is closed.
     win.on('closed', () => {
@@ -55,3 +46,5 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+//const conn = require('./db_connection.js');
+//var PythonShell = require('python-shell');
