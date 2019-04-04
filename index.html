@@ -34,6 +34,7 @@
         <script type="text/javascript">
             'use strict';
             const fs = require('fs');
+            // the path below will not work on your machine
             let files = fs.readdirSync('/Users/Marcos/AppData/Local/FortniteGame/Saved/Demos');
 
             console.log(files.length)
@@ -55,7 +56,7 @@
 
                 let fields = ["eliminations", "assists", "revives", "accuracy", "damage taken", "position"]
 
-                PythonShell.run('./BlastAPI/src/Main.py', options, function  (err, results)  {
+                PythonShell.run('./ForniteAPI/src/Main.py', options, function  (err, results)  {
                     if  (err)  throw err;
 
                     let title = document.createElement("h3")
