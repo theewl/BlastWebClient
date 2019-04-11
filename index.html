@@ -47,42 +47,50 @@
             <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
               <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Fortnite <span class="sr-only">(current)</span></a>
+                  <a class="nav-link active" href="#"><img src="images/fortnite.png" style="width:60px; height:60px> <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Apex Legends</a>
+                  <a class="nav-link" href="#"><img src="images/apex.png" style="width:60px; height:60px"> </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">HearthStone</a>
+                  <a class="nav-link" href="#"><img src="images/csgo.png" style="width:60px; height:60px"> </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">CS:GO</a>
+                  <a class="nav-link" href="#"> <img src="images/hs.png" style="width:60px; height:60px"> </a>
                 </li>
               </ul>
             </nav>
           </div>
         </div>
 
-        <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+        <main role="main" class="col-sm-9 ml-sm-auto col-md-11 pt-3">
         <h1 style="text-align:center; padding-top:40px;">Blastphemy01's Recent Games</h1>
 
         <script type="text/javascript">
             'use strict';
             const fs = require('fs');
             // the path below will not work on your machine
-            let files = fs.readdirSync('/Users/trana/AppData/Local/FortniteGame/Saved/Demos');
+            let files = fs.readdirSync('/Users/TheEWL/Desktop/Replays');
 
             console.log(files.length)
 
             let i = 1
+            let id = 0
+            var mysql = require('mysql');
+            var connection = mysql.createConnection({
+                host: "MacBook-Air.local",
+                user: "guest",
+                password: "9879968b",
+                database: "fortniteINFO"
+            });
 
-            files.forEach(fileName => {
-                // eliminations = results[0]
-                // assists = results[1]
-                // revives = results[2]
-                // accuracy = results[3]
-                // damage taken = results[4]
-                // placing = results[5]
+            //Array for storing data from database
+            let FortNiteData = [0, 0, 0, 0, 0, 0]
+            //Counter to iterate through columns in database
+            let ctr = 0;
+
+            files.forEach(fileName => 
+            {
                 let {PythonShell} = require('python-shell')
 
                 let options = {
@@ -94,48 +102,88 @@
                 PythonShell.run('./ForniteAPI/src/Main.py', options, function  (err, results)  {
                     if  (err)  throw err;
 
+                  //Writes data to database                  
+                  var sql = mysql.format("INSERT INTO stats (id, kills,assists,revives,accuracy,damageTaken, position) VALUES (?, ?, ?, ? ,?, ?, ?)", [id, results[0], results[1], results[2], results[3], results[4], results[5] ]);
+                  id++;
+                  // execute the insert statement
+                  connection.query(sql, function (err, result) 
+                  {
+                      if(err)
+                      {
+                          console.log("An error ocurred performing the query.");
+                          console.log(err);
+                          return;
+                      }
+                      console.log("INSERT Query succesfully executed");
+                  });
 
-                    let title = document.createElement("h3")
-                    let text = document.createTextNode("Game " + i.toString())
-                    title.appendChild(text)
-                    document.body.append(title)
+                  //Retrieves data from database
+                  var query =  "SELECT kills, assists, revives, accuracy, damageTaken, position FROM stats;";
 
-                    let table = document.createElement("TABLE");
-                    table.setAttribute("id", fileName + "table");
-                    document.body.append(table);
-
-                    let row1 = document.createElement("TR");
-                    row1.setAttribute("id", fileName + "row1");
-                    document.getElementById(fileName + "table").appendChild(row1);
-
-                    let row2 = document.createElement("TR");
-                    row2.setAttribute("id", fileName + "row2");
-                    document.getElementById(fileName + "table").appendChild(row2);
-
-                    for(let i = 0; i < fields.length; i++)
+                  // execute the select statement
+                  connection.query(query, function(err, rows, results) 
+                  {
+                    if(err)
                     {
-                        let data = document.createElement("TH");
-                        let text = document.createTextNode(fields[i]);
-                        data.appendChild(text);
-                        document.getElementById(fileName + "row1").appendChild(data);
+                        console.log("An error ocurred performing the query.");
+                        console.log(err);
+                        return;
                     }
+                          //Stores data from database to array
+                          FortNiteData[0] = rows[ctr].kills;
+                          FortNiteData[1] = rows[ctr].assists;
+                          FortNiteData[2] = rows[ctr].revives;
+                          FortNiteData[3] = rows[ctr].accuracy;
+                          FortNiteData[4] = rows[ctr].damageTaken;
+                          FortNiteData[5] = rows[ctr].position;
 
-                    for(let i = 0; i < results.length; i++)
-                    {
-                        let data = document.createElement("TD");
-                        let text = document.createTextNode(results[i]);
-                        data.appendChild(text);
-                        document.getElementById(fileName + "row2").appendChild(data);
-                    }
+                          ctr++
 
-                    // quick, dirty solution to add some spacing
-                    let pad = document.createElement("p");
-                    let t = document.createTextNode("");
-                    pad.appendChild(t);
-                    document.getElementById(fileName + "table").appendChild(pad);
+                      let title = document.createElement("h3")
+                      let text = document.createTextNode("Game " + i.toString())
+                      title.appendChild(text)
+                      document.body.append(title)
 
-                    i++
+                      let table = document.createElement("TABLE");
+                      table.setAttribute("id", fileName + "table");
+                      document.body.append(table);
+
+                      let row1 = document.createElement("TR");
+                      row1.setAttribute("id", fileName + "row1");
+                      document.getElementById(fileName + "table").appendChild(row1);
+
+                      let row2 = document.createElement("TR");
+                      row2.setAttribute("id", fileName + "row2");
+                      document.getElementById(fileName + "table").appendChild(row2);
+
+                      //Header
+                      for(let i = 0; i < fields.length; i++)
+                      {
+                          let data = document.createElement("TH");
+                          let text = document.createTextNode(fields[i]);
+                          data.appendChild(text);
+                          document.getElementById(fileName + "row1").appendChild(data);
+                      }
+
+                      //Appends data from database into table
+                      for(let i = 0; i < FortNiteData.length; i++)
+                      {
+                          let data = document.createElement("TD");
+                          let text = document.createTextNode(FortNiteData[i]);
+                          data.appendChild(text);
+                          document.getElementById(fileName + "row2").appendChild(data);
+                      }
+
+                      // quick, dirty solution to add some spacing
+                      let pad = document.createElement("p");
+                      let t = document.createTextNode("");
+                      pad.appendChild(t);
+                      document.getElementById(fileName + "table").appendChild(pad);
+
+                      i++
+
                 });
+              });
             });
 
 
