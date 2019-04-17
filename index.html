@@ -13,6 +13,7 @@
         <!-- Custom CSS stylesheet -->
         <link rel="stylesheet" href="Styles/dashboard.css">
 
+       
     </head>
 
     <body>
@@ -38,33 +39,410 @@
                  <a class="nav-link" href="#">Settings</a>
                </li>
              </ul>
+
+             <li class="nav-item">
+                    <a class="nav-link" style="text-align: right; font-size: 24px;
+                    font-weight: 500; color: #aea8ff;" href="#">Jedisongoku</a>
+               </li>
+   
+
+
            </div>
           </nav>
         </header>
 
         <div class="container-fluid">
           <div class="row">
-            <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+            <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar" style="width:12%;">
               <ul class="nav nav-pills flex-column">
+                  <center>
+
                 <li class="nav-item">
-                  <a class="nav-link active" href="#"><img src="images/fortnite.png" style="width:60px; height:60px> <span class="sr-only"></span></a>
+                  <a class="nav-link active" href="#"> <img src="images/fortnite.png" style="width:60px; height:60px"> <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"><img src="images/apex.png" style="width:60px; height:60px"> </a>
+                  <a class="nav-link" href="#" ><img src="images/apex.png" style="width:60px; height:60px"> </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"><img src="images/csgo.png" style="width:60px; height:60px"> </a>
+                  <a class="nav-link" href="#"> <img src="images/csgo.png" style="width:60px; height:60px"> </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"> <img src="images/hs.png" style="width:60px; height:60px"> </a>
+                  <a class="nav-link" href="#"> <img src="images/hs.png" style="width:60px; height:60px;"> </a>
                 </li>
+                </center>
+
+                <button class="btn btn-default" style=" width: 60px; height: 60px; border-radius: 8px; border: solid 1px #9ba9bb; margin: auto; margin-top:40px;"> <img src="images/add.png" alt="add" style="width:30px; height:30px;"> </button>
+
+                <button class="btn btn-default" style="width: 68px;
+                  height: 32px; border-radius: 4px; border: solid 1px #ff005b; opacity: 0.5; color:white; margin:auto; margin-top:230px">Logout</button>
+
               </ul>
             </nav>
           </div>
         </div>
 
-        <main role="main" class="col-sm-9 ml-sm-auto col-md-11 pt-3">
-        <h1 style="text-align:center; padding-top:40px;">Blastphemy01's Recent Games</h1>
+    
+    <main role="main" class="col-sm-9 ml-sm-auto col-md-11 pt-3">
+        <!-- <h1 style="text-align:center; padding-top:40px;">Blastphemy01's Recent Games</h1> -->
+
+    <div class="container" style="margin-left:60px; padding:12px; margin-top:50px;">
+        <h2 style= "color:#a29de2; padding-top:15px; font-size: 16px;">FEBRUARY 29, 2019</h2>
+
+        <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12">
+            
+                            <div class="card">
+                                <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                </div>
+                                
+                                <div class="card-body" style="background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                        <p> Place </p>
+                                        <p class="data" id = "position0"> </p>
+
+                                        <p> Assists </p>
+                                        <p class="data" id = "assists0"> </p>
+
+                                        <p> Revives </p>
+                                        <p class="data" id = "revives0"> </p>
+
+                                        <p> Accuracy </p>
+                                        <p class="data" id = "accuracy0"></p>
+                                        </div>
+
+
+                                        <div class="col-md-6 leftLine">
+
+                                        <p> Eliminations </p>
+                                        <p class="data" id = "kills0"> </p>
+
+                                        <p>  Damage Taken </p>
+                                        <p class="data" id = "damageTaken0"> </p>
+                                        </div>     
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="row">
+                    <div class="col-md-12">
+        
+                        <div class="card">
+                            <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                            </div>
+                            
+                            <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p> Place </p>
+                                        <p class="data" id = "position1"> </p>
+
+                                        <p> Assists </p>
+                                        <p class="data" id = "assists1"> </p>
+
+                                        <p> Revives </p>
+                                        <p class="data" id = "revives1"> </p>
+
+                                        <p> Accuracy </p>
+                                        <p class="data" id = "accuracy1"></p>
+                                        </div>
+
+
+                                        <div class="col-md-6 leftLine">
+
+                                        <p> Eliminations </p>
+                                        <p class="data" id = "kills1"> </p>
+
+                                        <p>  Damage Taken </p>
+                                        <p class="data" id = "damageTaken1"> </p>
+                                    </div>
+                                </div>    
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12">
+            
+                            <div class="card">
+                                <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                </div>
+                                
+                                <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                        <p> Place </p>
+                                        <p class="data" id = "position2"> </p>
+
+                                        <p> Assists </p>
+                                        <p class="data" id = "assists2"> </p>
+
+                                        <p> Revives </p>
+                                        <p class="data" id = "revives2"> </p>
+
+                                        <p> Accuracy </p>
+                                        <p class="data" id = "accuracy2"></p>
+                                        </div>
+
+
+                                        <div class="col-md-6 leftLine">
+
+                                        <p> Eliminations </p>
+                                        <p class="data" id = "kills2"> </p>
+
+                                        <p>  Damage Taken </p>
+                                        <p class="data" id = "damageTaken2"> </p>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-12">
+        
+                        <div class="card">
+                            <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                            </div>
+                            
+                            <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <p> Place </p>
+                                        <p class="data" id = "position3"> </p>
+
+                                        <p> Assists </p>
+                                        <p class="data" id = "assists3"> </p>
+
+                                        <p> Revives </p>
+                                        <p class="data" id = "revives3"> </p>
+
+                                        <p> Accuracy </p>
+                                        <p class="data" id = "accuracy3"></p>
+                                        </div>
+
+
+                                        <div class="col-md-6 leftLine">
+
+                                        <p> Eliminations </p>
+                                        <p class="data" id = "kills3"> </p>
+
+                                        <p>  Damage Taken </p>
+                                        <p class="data" id = "damageTaken3"> </p>
+                                    </div>
+                                </div>    
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+
+    <!--Second Table-->
+
+    <div class="container" style="margin-left:60px;">
+        <h2 style= "color:#a29de2; padding-top: 28px; font-size: 16px;">FEBRUARY 29, 2019</h2>
+    
+        <div class="row">
+            <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12">
+            
+                            <div class="card">
+                                <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                </div>
+                                
+                                <div class="card-body" style="background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                        <p> Place </p>
+                                        <p class="data" id = "position4"> </p>
+
+                                        <p> Assists </p>
+                                        <p class="data" id = "assists4"> </p>
+
+                                        <p> Revives </p>
+                                        <p class="data" id = "revives4"> </p>
+
+                                        <p> Accuracy </p>
+                                        <p class="data" id = "accuracy4"></p>
+                                        </div>
+
+
+                                        <div class="col-md-6 leftLine">
+
+                                        <p> Eliminations </p>
+                                        <p class="data" id = "kills4"> </p>
+
+                                        <p>  Damage Taken </p>
+                                        <p class="data" id = "damageTaken4"> </p>
+                                        </div>     
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12">
+            
+                            <div class="card">
+                                <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                </div>
+                                
+                                <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                        <p> Place </p>
+                                        <p class="data" id = "position5"> </p>
+
+                                        <p> Assists </p>
+                                        <p class="data" id = "assists5"> </p>
+
+                                        <p> Revives </p>
+                                        <p class="data" id = "revives5"> </p>
+
+                                        <p> Accuracy </p>
+                                        <p class="data" id = "accuracy5"></p>
+                                        </div>
+
+
+                                        <div class="col-md-6 leftLine">
+
+                                        <p> Eliminations </p>
+                                        <p class="data" id = "kills5"> </p>
+
+                                        <p>  Damage Taken </p>
+                                        <p class="data" id = "damageTaken5"> </p>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+    
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12">
+            
+                            <div class="card">
+                                <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                </div>
+                                
+                                <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                        <p> Place </p>
+                                        <p class="data" id = "position6"> </p>
+
+                                        <p> Assists </p>
+                                        <p class="data" id = "assists6"> </p>
+
+                                        <p> Revives </p>
+                                        <p class="data" id = "revives6"> </p>
+
+                                        <p> Accuracy </p>
+                                        <p class="data" id = "accuracy6"></p>
+                                        </div>
+
+
+                                        <div class="col-md-6 leftLine">
+
+                                        <p> Eliminations </p>
+                                        <p class="data" id = "kills6"> </p>
+
+                                        <p>  Damage Taken </p>
+                                        <p class="data" id = "damageTaken6"> </p>
+                                        </div>
+                                    </div>    
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12">
+            
+                            <div class="card">
+                                <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                </div>
+                                
+                                <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                        <p> Place </p>
+                                        <p class="data" id = "position7"> </p>
+
+                                        <p> Assists </p>
+                                        <p class="data" id = "assists7"> </p>
+
+                                        <p> Revives </p>
+                                        <p class="data" id = "revives7"> </p>
+
+                                        <p> Accuracy </p>
+                                        <p class="data" id = "accuracy7"></p>
+                                        </div>
+
+
+                                        <div class="col-md-6 leftLine">
+
+                                        <p> Eliminations </p>
+                                        <p class="data" id = "kills7"> </p>
+
+                                        <p>  Damage Taken </p>
+                                        <p class="data" id = "damageTaken7"> </p>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
 
         <script type="text/javascript">
             'use strict';
@@ -88,6 +466,9 @@
             let FortNiteData = [0, 0, 0, 0, 0, 0]
             //Counter to iterate through columns in database
             let ctr = 0;
+
+            //Counter for data to be placed in html code
+            let iterate = 0;
 
             files.forEach(fileName => 
             {
@@ -136,6 +517,23 @@
                           FortNiteData[3] = rows[ctr].accuracy;
                           FortNiteData[4] = rows[ctr].damageTaken;
                           FortNiteData[5] = rows[ctr].position;
+
+                          //Reminder: Make html update table when new replay file is added
+                          //Update most recent data only?
+                          document.getElementById("kills"+iterate).innerHTML=FortNiteData[0];
+                          document.getElementById("assists"+iterate).innerHTML=FortNiteData[1];
+                          document.getElementById("revives"+iterate).innerHTML=FortNiteData[2];
+                          document.getElementById("accuracy"+iterate).innerHTML=FortNiteData[3];
+                          document.getElementById("damageTaken"+iterate).innerHTML=FortNiteData[4];
+                          document.getElementById("position"+iterate).innerHTML=FortNiteData[5];
+                          iterate++;
+
+                          //Will only display 8 game sessions, so if there are more than 8 replay files, it will update tables with the next
+                          //8 replay files 
+                          if(iterate == 7)
+                          {
+                            iterate = 0;
+                          }
 
                           ctr++
 
