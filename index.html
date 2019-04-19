@@ -11,12 +11,40 @@
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <!-- Custom CSS stylesheet -->
-        <link rel="stylesheet" href="Styles/dashboard.css">
-
-       
+        <link rel="stylesheet" href="assets/css/dashboard.css">
+        <link rel="stylesheet" href="assets/css/index.css">
+        
+        <link rel="import" href="assets/sections/career-stats.html">
+        <link rel="import" href="assets/sections/leaderboard.html">
+        <link rel="import" href="assets/sections/session-data.html">
     </head>
 
-    <body>
+    <body background="assets/images/background.png">
+        <div class="sidenav">
+            <a href="#Blast"><img class="icon" style="height: 66px; width: 66px;" src="assets/images/blast-icon.png" alt="Blast icon"></a>
+            <a class="active" href="#Fortnite"><img src="assets/images/Fortnite.png" alt="Fortnite icon"></a>
+            <i class="fa fa-plus-square-o"></i>
+            <button class="button-logout">Log Out</button>
+        </div>
+
+        <div class="topnav">
+            <header>
+                <h3 class="game">Fortnite</h3>
+                <h4 class="playerName">Blastphemy01</h4>
+            </header>
+            <button type="button" id="button-session-data" data-section="session-data" class="nav-button">SESSION DATA</button>
+            <button type="button" id="button-career-stats" data-section="career-stats" class="nav-button">CAREER STATS</button>
+            <button type="button" id="button-leaderboard" data-section="leaderboard" class="nav-button">LEADERBOARD</button>
+        </div>
+
+    <main class="content"></main>
+    <script>
+        require('./assets/imports')
+        require('./assets/nav')
+    </script>
+        
+        
+        <!--
       <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
           <img src="images/blast-icon.png" alt="Blast Icon" style="width:55px; height:55px;">
@@ -83,7 +111,6 @@
 
     
     <main role="main" class="col-sm-9 ml-sm-auto col-md-11 pt-3">
-        <!-- <h1 style="text-align:center; padding-top:40px;">Blastphemy01's Recent Games</h1> -->
 
     <div class="container" style="margin-left:60px; padding:12px; margin-top:50px;">
         <h2 style= "color:#a29de2; padding-top:15px; font-size: 16px;">FEBRUARY 29, 2019</h2>
@@ -262,9 +289,6 @@
         </div>
     </div>
 
-
-
-    <!--Second Table-->
 
     <div class="container" style="margin-left:60px;">
         <h2 style= "color:#a29de2; padding-top: 28px; font-size: 16px;">FEBRUARY 29, 2019</h2>
@@ -586,7 +610,7 @@
 
 
         </script>
-
+-->
     </body>
 
 </html>
