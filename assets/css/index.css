@@ -1,0 +1,115 @@
+* {
+    font-family: Roboto;
+}
+html, body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    height: 100%
+}
+
+.button-logout {
+    background-color: transparent;
+    border: solid 1px #ff005b;
+    border-radius: 4px;
+    color: white;
+}
+
+.content {
+    margin-left: 100px;
+}
+
+.sidenav {
+    height: 100%;
+    width: 100px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to bottom, #181543, #05031f 50%, #05031f);
+    overflow-x: hidden;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.sidenav a {
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.sidenav a.active {
+    border-left: 5px solid mediumspringgreen;
+}
+
+.sidenav-bottom {
+    float: bottom;
+}
+
+.sidenav i {
+    color: #818181;
+    display: block;
+    font-size: 70px;
+}
+
+.sidenav img {
+    width: 60px;
+    height: 60px;
+}
+
+.topnav {
+    margin-left: 100px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px;
+    background-image: linear-gradient(to bottom, #181543, #110f36);
+    overflow: hidden;
+}
+
+.topnav button {
+    float: left;
+    text-align: center;
+    padding: 15px 15px;
+    text-decoration: none;
+    letter-spacing: 0.4px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #a29de2;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.topnav button:hover {
+    color: white;
+}
+
+.topnav .is-selected {
+    border-bottom: 5px solid #03feb2;
+}
+
+.topnav .game {
+    display: inline-block;
+    color: white;
+    padding: 0px;
+    margin: 0px;
+}
+
+.topnav .playerName {
+    display: inline-block;
+    color: #aea8ff;
+    float: right;
+    padding: 0px;
+    margin: 0px;
+}
+
+.topnav header {
+    padding: 15px 15px 5px 15px;
+    margin: 0px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
