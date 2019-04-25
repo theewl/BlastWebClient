@@ -13,18 +13,21 @@
         <!-- Custom CSS stylesheet -->
         <link rel="stylesheet" href="assets/css/dashboard.css">
         <link rel="stylesheet" href="assets/css/index.css">
-        
+
         <link rel="import" href="assets/sections/career-stats.html">
         <link rel="import" href="assets/sections/leaderboard.html">
         <link rel="import" href="assets/sections/session-data.html">
     </head>
 
-    <body background="assets/images/background.png">
+    <body background="assets/images/background.png" style="background:cover;" >
         <div class="sidenav">
-            <a href="#Blast"><img class="icon" style="height: 66px; width: 66px;" src="assets/images/blast-icon.png" alt="Blast icon"></a>
-            <a class="active" href="#Fortnite"><img src="assets/images/Fortnite.png" alt="Fortnite icon"></a>
+            <a href="#Blast"><img class="icon" style="height: 66px; width: 66px; margin-top:30px;" src="assets/images/blast-icon.png" alt="Blast icon"></a>
+            <a class="active" href="#Fortnite" style="padding:20px;"><img src="assets/images/Fortnite.png" alt="Fortnite icon"></a>
             <i class="fa fa-plus-square-o"></i>
-            <button class="button-logout">Log Out</button>
+            <button class="btn btn-default" style=" width: 60px; height: 60px; border-radius: 8px; border: solid 1px #9ba9bb; "> <img src="images/add.png" alt="add" style="width:30px; height:30px;"> </button>
+            <!-- <button class="btn btn-default" style="width: 75px;
+            height: 32px; border-radius: 4px; border: solid 1px #ff005b; color:white; margin-top:200px; margin-left:55px;">Logout</button> -->
+            <button class="button-logout" id="btn-logout" style= "padding:20px; padding-top: 5px ; padding-bottom: 30px;margin-top:450px; text-align:center;height:10px;">Log Out</button>
         </div>
 
         <div class="topnav">
@@ -41,79 +44,23 @@
         <script>
             require('./assets/imports')
             require('./assets/nav')
+
         </script>
-        
-        
-        <!--
-      <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-          <img src="images/blast-icon.png" alt="Blast Icon" style="width:55px; height:55px;">
-          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
 
-          <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-             <ul class="navbar-nav mr-auto">
-               <li class="nav-item active">
-                 <a class="nav-link" href="#">Session Data <span class="sr-only">(current)</span></a>
-               </li>
-               <li class="nav-item">
-                 <a class="nav-link" href="#">Leaderboard</a>
-               </li>
-               <li class="nav-item">
-                 <a class="nav-link" href="#">Lifetime Stats</a>
-               </li>
-               <li class="nav-item">
-                 <a class="nav-link" href="#">Settings</a>
-               </li>
-             </ul>
+        <script>
+            let $ = require('jquery')
+            const ipc = require('electron').ipcRenderer;
+            $('#btn-logout').on('click', () => {
+                ipc.sendSync('entry-accepted', 'ping2')
+            })
+        </script>
 
-             <li class="nav-item">
-                    <a class="nav-link" style="text-align: right; font-size: 24px;
-                    font-weight: 500; color: #aea8ff;" href="#">Jedisongoku</a>
-               </li>
-   
+      
 
-
-           </div>
-          </nav>
-        </header>
-
-        <div class="container-fluid">
-          <div class="row">
-            <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar" style="width:12%;">
-              <ul class="nav nav-pills flex-column">
-                  <center>
-
-                <li class="nav-item">
-                  <a class="nav-link active" href="#"> <img src="images/fortnite.png" style="width:60px; height:60px"> <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#" ><img src="images/apex.png" style="width:60px; height:60px"> </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"> <img src="images/csgo.png" style="width:60px; height:60px"> </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"> <img src="images/hs.png" style="width:60px; height:60px;"> </a>
-                </li>
-                </center>
-
-                <button class="btn btn-default" style=" width: 60px; height: 60px; border-radius: 8px; border: solid 1px #9ba9bb; margin: auto; margin-top:40px;"> <img src="images/add.png" alt="add" style="width:30px; height:30px;"> </button>
-
-                <button class="btn btn-default" style="width: 68px;
-                  height: 32px; border-radius: 4px; border: solid 1px #ff005b; opacity: 0.5; color:white; margin:auto; margin-top:230px">Logout</button>
-
-              </ul>
-            </nav>
-          </div>
-        </div>
-
-    
     <main role="main" class="col-sm-9 ml-sm-auto col-md-11 pt-3">
 
-    <div class="container" style="margin-left:60px; padding:12px; margin-top:50px;">
-        <h2 style= "color:#a29de2; padding-top:15px; font-size: 16px;">FEBRUARY 29, 2019</h2>
+    <div class="container" style="margin-left:60px; padding:5px; margin-top:10px;">
+        <h2 style= "color:#a29de2; padding-top:3px; font-size: 16px; font-weight:bold;">FEBRUARY 29, 2019</h2>
 
         <div class="row">
         <div class="col-md-12">
@@ -121,12 +68,12 @@
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12">
-            
+
                             <div class="card">
                                 <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
-                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p>
                                 </div>
-                                
+
                                 <div class="card-body" style="background-image: linear-gradient(to bottom, #161241, #14103d);";>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -152,8 +99,10 @@
 
                                         <p>  Damage Taken </p>
                                         <p class="data" id = "damageTaken0"> </p>
-                                        </div>     
-                                    </div>    
+                                        <img src="images/first.png" alt="">
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -163,12 +112,12 @@
                 <div class="col-md-3">
                     <div class="row">
                     <div class="col-md-12">
-        
+
                         <div class="card">
                             <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
-                                <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p>
                             </div>
-                            
+
                             <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -193,8 +142,10 @@
 
                                         <p>  Damage Taken </p>
                                         <p class="data" id = "damageTaken1"> </p>
+                                        <img src="images/second.png" alt="image">
+
                                     </div>
-                                </div>    
+                                </div>
                             </div>
                             </div>
                         </div>
@@ -204,12 +155,12 @@
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12">
-            
+
                             <div class="card">
                                 <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
-                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p>
                                 </div>
-                                
+
                                 <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -235,8 +186,10 @@
 
                                         <p>  Damage Taken </p>
                                         <p class="data" id = "damageTaken2"> </p>
+                                        <img src="images/third.png" alt="">
+
                                         </div>
-                                    </div>    
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -246,12 +199,12 @@
             <div class="col-md-3">
                 <div class="row">
                     <div class="col-md-12">
-        
+
                         <div class="card">
                             <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
-                                <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p>
                             </div>
-                            
+
                             <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -277,8 +230,9 @@
 
                                         <p>  Damage Taken </p>
                                         <p class="data" id = "damageTaken3"> </p>
+                                        <img src="images/fourth.png" alt="">
                                     </div>
-                                </div>    
+                                </div>
                             </div>
                             </div>
                         </div>
@@ -291,20 +245,20 @@
 
 
     <div class="container" style="margin-left:60px;">
-        <h2 style= "color:#a29de2; padding-top: 28px; font-size: 16px;">FEBRUARY 29, 2019</h2>
-    
+        <h2 style= "color:#a29de2; padding-top: 20px; font-size: 16px; font-weight:bold;">FEBRUARY 29, 2019</h2>
+
         <div class="row">
             <div class="col-md-12">
             <div class="row">
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12">
-            
+
                             <div class="card">
                                 <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
-                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p>
                                 </div>
-                                
+
                                 <div class="card-body" style="background-image: linear-gradient(to bottom, #161241, #14103d);";>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -330,23 +284,25 @@
 
                                         <p>  Damage Taken </p>
                                         <p class="data" id = "damageTaken4"> </p>
-                                        </div>     
-                                        </div>    
+                                        <img src="images/first.png" alt="">
+
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-    
+
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12">
-            
+
                             <div class="card">
                                 <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
-                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p>
                                 </div>
-                                
+
                                 <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -372,23 +328,24 @@
 
                                         <p>  Damage Taken </p>
                                         <p class="data" id = "damageTaken5"> </p>
+                                        <img src="images/second.png" alt="image">
                                         </div>
-                                    </div>    
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         </div>
                     </div>
-    
+
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12">
-            
+
                             <div class="card">
                                 <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
-                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p>
                                 </div>
-                                
+
                                 <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -414,23 +371,24 @@
 
                                         <p>  Damage Taken </p>
                                         <p class="data" id = "damageTaken6"> </p>
+                                        <img src="images/third.png" alt="">
                                         </div>
-                                    </div>    
+                                    </div>
                                 </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-    
+
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12">
-            
+
                             <div class="card">
                                 <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
-                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p> 
+                                    <p style="color:white; font-size: 13px; text-align: right;">11:23 AM</p>
                                 </div>
-                                
+
                                 <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -456,8 +414,9 @@
 
                                         <p>  Damage Taken </p>
                                         <p class="data" id = "damageTaken7"> </p>
+                                        <img src="images/fourth.png" alt="">
                                         </div>
-                                    </div>    
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -472,7 +431,8 @@
             'use strict';
             const fs = require('fs');
             // the path below will not work on your machine
-            let files = fs.readdirSync('/Users/TheEWL/Desktop/Replays');
+            let files = fs.readdirSync('/Users/TheEWL/Desktop/v4/Replays');
+            
 
             console.log(files.length)
 
@@ -480,11 +440,11 @@
             let id = 0
             var mysql = require('mysql');
             var connection = mysql.createConnection({
-                host: "MacBook-Air.local",
-                user: "guest",
-                password: "9879968b",
-                database: "fortniteINFO"
-            });
+               host: "remotemysql.com",
+               user: "LxpYo6DXca",
+               password: "sDRWmqCi5P",
+               database: "LxpYo6DXca"
+           });
 
             //Array for storing data from database
             let FortNiteData = [0, 0, 0, 0, 0, 0]
@@ -494,7 +454,7 @@
             //Counter for data to be placed in html code
             let iterate = 0;
 
-            files.forEach(fileName => 
+            files.forEach(fileName =>
             {
                 let {PythonShell} = require('python-shell')
 
@@ -507,11 +467,11 @@
                 PythonShell.run('./ForniteAPI/src/Main.py', options, function  (err, results)  {
                     if  (err)  throw err;
 
-                  //Writes data to database                  
+                  //Writes data to database
                   var sql = mysql.format("INSERT INTO stats (id, kills,assists,revives,accuracy,damageTaken, position) VALUES (?, ?, ?, ? ,?, ?, ?)", [id, results[0], results[1], results[2], results[3], results[4], results[5] ]);
                   id++;
                   // execute the insert statement
-                  connection.query(sql, function (err, result) 
+                  connection.query(sql, function (err, result)
                   {
                       if(err)
                       {
@@ -526,7 +486,7 @@
                   var query =  "SELECT kills, assists, revives, accuracy, damageTaken, position FROM stats;";
 
                   // execute the select statement
-                  connection.query(query, function(err, rows, results) 
+                  connection.query(query, function(err, rows, results)
                   {
                     if(err)
                     {
@@ -553,30 +513,30 @@
                           iterate++;
 
                           //Will only display 8 game sessions, so if there are more than 8 replay files, it will update tables with the next
-                          //8 replay files 
-                          if(iterate == 7)
+                          //8 replay files
+                          if(iterate == 8)
                           {
                             iterate = 0;
                           }
 
                           ctr++
 
-                      let title = document.createElement("h3")
-                      let text = document.createTextNode("Game " + i.toString())
-                      title.appendChild(text)
-                      document.body.append(title)
+                    //   let title = document.createElement("h3")
+                    //   let text = document.createTextNode("Game " + i.toString())
+                    //   title.appendChild(text)
+                    //   document.body.append(title)
 
-                      let table = document.createElement("TABLE");
-                      table.setAttribute("id", fileName + "table");
-                      document.body.append(table);
+                    //   let table = document.createElement("TABLE");
+                    //   table.setAttribute("id", fileName + "table");
+                    //   document.body.append(table);
 
-                      let row1 = document.createElement("TR");
-                      row1.setAttribute("id", fileName + "row1");
-                      document.getElementById(fileName + "table").appendChild(row1);
+                    //   let row1 = document.createElement("TR");
+                    //   row1.setAttribute("id", fileName + "row1");
+                    //   document.getElementById(fileName + "table").appendChild(row1);
 
-                      let row2 = document.createElement("TR");
-                      row2.setAttribute("id", fileName + "row2");
-                      document.getElementById(fileName + "table").appendChild(row2);
+                    //   let row2 = document.createElement("TR");
+                    //   row2.setAttribute("id", fileName + "row2");
+                    //   document.getElementById(fileName + "table").appendChild(row2);
 
                       //Header
                       for(let i = 0; i < fields.length; i++)
@@ -610,7 +570,7 @@
 
 
         </script>
--->
+
     </body>
 
 </html>

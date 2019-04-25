@@ -3,7 +3,7 @@ import sys
 
 #print(sys.argv[1])
 
-with Reader("/Users/TheEWL/Desktop/Replays" + "/" + sys.argv[1]) as replay:
+with Reader("/Users/TheEWL/Desktop/v4/Replays" + "/" + sys.argv[1]) as replay:
     print(replay.stats['eliminations'])
     print(replay.stats['assists'])
     print(replay.stats['revives'])

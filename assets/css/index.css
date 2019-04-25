@@ -16,12 +16,13 @@ html, body {
 }
 
 .content {
-    margin-left: 100px;
+    margin-left: 210px;
+    margin-top:50px;
 }
 
 .sidenav {
     height: 100%;
-    width: 100px;
+    width: 150px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -60,7 +61,7 @@ html, body {
 }
 
 .topnav {
-    margin-left: 100px; /* Same as the width of the sidenav */
+    margin-left: 150px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px;
     background-image: linear-gradient(to bottom, #181543, #110f36);
@@ -79,6 +80,8 @@ html, body {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    outline:none;
+    
 }
 
 .topnav button:hover {
@@ -93,15 +96,18 @@ html, body {
     display: inline-block;
     color: white;
     padding: 0px;
-    margin: 0px;
+    margin-top:10px;
+    /* margin: 0px; */
 }
 
 .topnav .playerName {
-    display: inline-block;
+    /* display: inline-block; */
+    margin-right: 150px;
+    margin-top: 10px;
     color: #aea8ff;
     float: right;
     padding: 0px;
-    margin: 0px;
+    /* margin: 0px; */
 }
 
 .topnav header {

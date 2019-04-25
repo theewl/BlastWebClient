@@ -88,7 +88,7 @@ h3 {
 table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    padding-bottom: 10px;
+    /* padding-bottom: 5px; */
     margin: 0px auto;
 }
 
