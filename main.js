@@ -96,12 +96,4 @@ ipcMain.on('entry-accepted', (event, arg) => {
     }
   })
 
-  // ipcMain.on('logout-accepted', (event, arg) => {
-  //     if(arg=='ping2'){
-  //         win.hide();
-  //         child.show();
-  //
-  //     }
-  //   })
-
 app.on('ready',createWindows)
