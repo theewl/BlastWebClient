@@ -64,7 +64,7 @@ let child
 
 function createWindows() {
 
-    win =new BrowserWindow({width:900,height:600,minWidth:900, icon:"./images/icon.ico", show: false})
+    win =new BrowserWindow({width:900,height:600,minWidth:900, icon:"assets/images/icon.ico", show: false})
 
     win.loadURL(url.format({
         pathname:path.join(__dirname,'index.html'),
@@ -72,7 +72,7 @@ function createWindows() {
         slashes:true
     }))
 
-    child = new BrowserWindow({parent: win,width:400,height:400})
+    child = new BrowserWindow({parent: win,width:420,height:450})
     child.loadURL(url.format({
         pathname:path.join(__dirname,'login.html'),
         protocol:'file',
