@@ -198,16 +198,21 @@
                         console.log(err.message);
                     }else
                     {
-                        console.log("name: " + result.accountName);
-                        console.log("platform: " + result.platform);
-                        console.log("score: " + result.score);
-                        console.log("kills: " + result.kills);
-                        console.log("wins: " + result.wins);
-                        console.log("kd: " + result.kd);
-                        console.log("wr: " + result.wr);
+                        if (result.platform == 1)
+                        {
+                            platform = "xbox";
+                        }
+                        else if (result.platform == 2)
+                        {
+                            platform = "ps4";
+                        }
+                        else
+                        {
+                            platform = "pc";
+                        }
 
                         document.getElementById("accName").innerHTML=result.accountName;
-                        document.getElementById("platform").innerHTML=result.platform;
+                        document.getElementById("platform").innerHTML= platform;
                         document.getElementById("score").innerHTML=result.score;
                         document.getElementById("kills").innerHTML=result.kills;
                         document.getElementById("kd").innerHTML=result.kd;
