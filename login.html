@@ -23,24 +23,40 @@
             <form>
 
                 <p>Email/Username</p>
-                <input type="text" name="" placeholder="enter email/username">
-
+                <input type="text" id="user" placeholder="Enter email/username">
+    
                 <p>Password</p>
-                <input type="password" name="" placeholder="Enter password">
-                <input type="submit" name="" value="LOGIN" id="btn-login">
+                <input type="password" id="pw" placeholder="Enter password">
+                <button type = "submit" onclick="myFunction()">LOGIN</button>
+
                 <a href="#" style="margin-left: 150px; color: #454176; font-size: 16px;
-                font-weight:bold;">blast.com</a>
+                font-weight:bold;">Blast.com</a>
 
             </form>
         </div>
 
         <script>
+            function myFunction() 
+            {
                 let $ = require('jquery')
                 let fs = require('fs')
                 const ipc = require('electron').ipcRenderer;
-                $('#btn-login').on('click', () => {
-                    ipc.sendSync('entry-accepted', 'ping')
-                })
+                var username = document.getElementById("user").value;
+                var password = document.getElementById("pw").value;
+                if(username != "" && password != "")
+                {
+                    ipc.sendSync('entry-accepted', 'ping');
+                }
+                else if(username == "")
+                {
+                    alert("Username is invalid!");
+                }
+                else if(password == "")
+                {
+                    alert("Password is invalid!");
+                }
+                
+            }
         </script>
 
     </body>
