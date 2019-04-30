@@ -43,6 +43,7 @@
                 const ipc = require('electron').ipcRenderer;
                 var username = document.getElementById("user").value;
                 var password = document.getElementById("pw").value;
+                localStorage.setItem("loginUser",username);
                 if(username != "" && password != "")
                 {
                     ipc.sendSync('entry-accepted', 'ping');
