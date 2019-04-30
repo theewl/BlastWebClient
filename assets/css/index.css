@@ -13,7 +13,7 @@ body {
 .button-logout {
     background-color: transparent;
     border: solid 1px #ff005b;
-    border-radius: 4px;
+    border-radius: 5px;
     color: white;
 }
 
