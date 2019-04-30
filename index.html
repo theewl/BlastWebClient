@@ -32,7 +32,7 @@
         <div class="topnav">
             <header>
                 <h3 class="game">Fortnite</h3>
-                <h4 class="playerName">Blastphemy01</h4>
+                <h4 class="playerName" id = "theUserName"></h4>
             </header>
             <button type="button" id="button-session-data" data-section="session-data" class="nav-button">SESSION DATA</button>
             <button type="button" id="button-career-stats" data-section="career-stats" class="nav-button">CAREER STATS</button>
@@ -47,6 +47,9 @@
         </script>
 
         <script>
+            
+            document.getElementById("theUserName").innerHTML=localStorage.getItem("loginUser");
+
             let $ = require('jquery')
             const ipc = require('electron').ipcRenderer;
             $('#btn-logout').on('click', () => {
