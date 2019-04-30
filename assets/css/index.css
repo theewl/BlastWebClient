@@ -3,11 +3,11 @@
 }
 
 body {
-    background-repeat: no-repeat;
     background-image: url('../images/background.png');
-    background-size: cover;
-    margin: 0;
-    height: 100%
+    background-position: center center;
+		background-repeat:  no-repeat;
+		background-attachment: fixed;
+		background-size:  cover;
 }
 
 .button-logout {
