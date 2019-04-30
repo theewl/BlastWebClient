@@ -174,16 +174,20 @@ th {
 p{
  color: #a29de2;
  font-weight: bold;
- font-size:13px;
+ font-size:12px;
+ font-family: roboto;
 
 }
 
 .data{
  color:white;
+ font-size:23px;
+ font-family: roboto;
 }
 
 .nav-item{
  margin: 0 auto;
+ 
 }
 
 @media screen and (max-height: 450px) {
