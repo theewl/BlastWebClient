@@ -14,8 +14,8 @@ body{
 .loginbox{
     width:420px;
     height:420px;
-    background-image: linear-gradient(to bottom, #181543, #05031f 50%, #05031f);
-    /* background-image: url(../assets/images/loginbg.png); */
+    /* background-image: linear-gradient(to bottom, #181543, #05031f 50%, #05031f); */
+    background-image: url(../images/above.jpg);
     color: #03feb2;
     top:50%;
     left:50%;
@@ -30,8 +30,13 @@ h1{
     margin: 0;
     /* padding:0 0 20px; */
     text-align: center;
-
 }
+
+.loginform{
+    margin-top:35px;
+}
+
+
 
 .loginbox p{
     margin:0;
@@ -50,6 +55,7 @@ h1{
     outline: none;
     height: 40px;
     color:#fff;
+    
 }
 
 
@@ -61,4 +67,5 @@ h1{
     margin-left: 25px;
     border:none;
     outline:none;
+    margin-top:22px;
 }
