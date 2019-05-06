@@ -26,26 +26,23 @@
                                                 <div class="col-md-6">
 
                                                 <p> KILLS </p>
-                                                <p class="data" id = "position0"> </p>
+                                                <p class="data" id = "kill"> </p>
 
                                                 <p> DEATHS </p>
-                                                <p class="data" id = "assists0"> </p>
+                                                <p class="data" id = "death"> </p>
 
                                                 <p> K/D </p>
-                                                <p class="data" id = "revives0"> </p>
+                                                <p class="data" id = "killdeath"> </p>
 
-                                                <p> DAMAGE </p>
-                                                <p class="data" id = "accuracy0"></p>
                                                 </div>
-
 
                                                 <div class="col-md-6 leftLine">
 
                                                 <p> HEADSHOTS </p>
-                                                <p class="data" id = "kills0"> </p>
+                                                <p class="data" id = "headshot"> </p>
 
-                                                <p>  ACCURACY </p>
-                                                <p class="data" id = "damageTaken0"> </p>
+                                                <p>  STATUS </p>
+                                                <p class="data" id = "WTL"> </p>
 
                                                 <img src="assets/images/first.png" alt="pic" style = "width:150px; max-width: 100%; height:120px; max-height:100%; margin-top:15px; display: inline-block;">
 
@@ -376,148 +373,190 @@
                 </div>
 
                 <script type="text/javascript">
-                    'use strict';
-                    const fs = require('fs');
-                    // the path below will not work on your machine
-                    let files = fs.readdirSync('/Users/kimki/Desktop/inf191B/background/BlastWebClient/Replays');
+                    
+                    var fs = require('fs');
+                    var jsgo = require('jsgo');
 
+                    //num of kills
+                    var kills = 0;
+                    //num of headshots
+                    var headshots = 0;
+                    //num of deaths
+                    var deaths = 0;
+                    //k/d ratio
+                    var kd = 0;
+                    //User's name
+                    var username;
+                    //To keep track of rounds
+                    var previousRound = 0;
+                    //Terriorist's score
+                    var tSide = 0;
+                    //CT's score
+                    var ctSide = 0;
+                    //current player's side
+                    var currPlayerSide;
+                    //win or lose?
+                    var winLose;
+                    var winLose2;
 
-
-                    console.log(files.length)
-
-                    let i = 1
-                    let id = 0
-                    var mysql = require('mysql');
-                    var connection = mysql.createConnection({
-                       host: "remotemysql.com",
-                       user: "LxpYo6DXca",
-                       password: "sDRWmqCi5P",
-                       database: "LxpYo6DXca"
-                   });
-
-                    //Array for storing data from database
-                    let FortNiteData = [0, 0, 0, 0, 0, 0]
-                    //Counter to iterate through columns in database
-                    let ctr = 0;
-
-                    //Counter for data to be placed in html code
-                    let iterate = 0;
-
-                    files.forEach(fileName =>
+                    //Read replay files
+                    fs.readFile('/Users/TheEWL/Desktop/BlastWebClient/csgoReplay/2093_fnatic-virtus-pro_de_cbble.dem', function(err, data)
                     {
-                        let {PythonShell} = require('python-shell')
 
-                        let options = {
-                            args: [fileName]
-                        };
+                        var myDemo = new jsgo.Demo().
 
-                        let fields = ["eliminations", "assists", "revives", "accuracy", "damage taken", "position"]
+                        //Checks event of each round
+                        on('game.round_officially_ended', function(event) 
+                        {
+                            //Get teams 
+                            var teams = this.getTeams();
+                            //Get players
+                            var player = this.getPlayers();
+                            var currentPlayer = "";
+                            var currentPos = 0;
 
-                        PythonShell.run('./ForniteAPI/src/Main.py', options, function  (err, results)  {
-                            if  (err)  throw err;
-
-                          //Writes data to database
-                          var sql = mysql.format("INSERT INTO stats (id, kills,assists,revives,accuracy,damageTaken, position) VALUES (?, ?, ?, ? ,?, ?, ?)", [id, results[0], results[1], results[2], results[3], results[4], results[5] ]);
-                          id++;
-                          // execute the insert statement
-                          connection.query(sql, function (err, result)
-                          {
-                              if(err)
-                              {
-                                  console.log("An error ocurred performing the query.");
-                                  console.log(err);
-                                  return;
-                              }
-                              console.log("INSERT Query succesfully executed");
-                          });
-
-                          //Retrieves data from database
-                          var query =  "SELECT kills, assists, revives, accuracy, damageTaken, position FROM stats;";
-
-                          // execute the select statement
-                          connection.query(query, function(err, rows, results)
-                          {
-                            if(err)
+                            //Loop to find the user's name
+                            for ( var i = 0; i < 20; i++)
                             {
-                                console.log("An error ocurred performing the query.");
-                                console.log(err);
-                                return;
+                                //Find username in replay file
+                                if (player[i].getName() == "dennis")
+                                {
+                                    currentPlayer = player[i].getName();
+                                    currentPos = i;
+                                    break;
+                                    
+                                }
                             }
-                                  //Stores data from database to array
-                                  FortNiteData[0] = rows[ctr].kills;
-                                  FortNiteData[1] = rows[ctr].assists;
-                                  FortNiteData[2] = rows[ctr].revives;
-                                  FortNiteData[3] = rows[ctr].accuracy;
-                                  FortNiteData[4] = rows[ctr].damageTaken;
-                                  FortNiteData[5] = rows[ctr].position;
 
-                                  //Reminder: Make html update table when new replay file is added
-                                  //Update most recent data only?
-                                  document.getElementById("kills"+iterate).innerHTML=FortNiteData[0];
-                                  document.getElementById("assists"+iterate).innerHTML=FortNiteData[1];
-                                  document.getElementById("revives"+iterate).innerHTML=FortNiteData[2];
-                                  document.getElementById("accuracy"+iterate).innerHTML=FortNiteData[3];
-                                  document.getElementById("damageTaken"+iterate).innerHTML=FortNiteData[4];
-                                  document.getElementById("position"+iterate).innerHTML=FortNiteData[5];
-                                  iterate++;
+                            //Find the team that the user is in
+                            //console.log(player[currentPos].getTeam(this)["classInfo"].name);
 
-                                  //Will only display 8 game sessions, so if there are more than 8 replay files, it will update tables with the next
-                                  //8 replay files
-                                  if(iterate == 8)
-                                  {
-                                    iterate = 0;
-                                  }
+                            //if user is in CT, make that his/her current team
+                            if(player[currentPos].getTeam(this)["classInfo"].name == 'CCSTeam')
+                            {
+                                currPlayerSide = 'CT';
+                            }
+                            //if user is in terrorist, make that his/her current team
+                            else
+                            {
+                                currPlayerSide = 'TERRORIST';
+                            }
 
-                                  ctr++
+                            //Checks rounds
+                            //console.log('ROUND ' + (previousRound + 1));
 
-                            //   let title = document.createElement("h3")
-                            //   let text = document.createTextNode("Game " + i.toString())
-                            //   title.appendChild(text)
-                            //   document.body.append(title)
+                            previousRound = 0;
+                            var teams = this.getTeams();
 
-                            //   let table = document.createElement("TABLE");
-                            //   table.setAttribute("id", fileName + "table");
-                            //   document.body.append(table);
+                            //Keeps track of score after each round
+                            for (var i = 0; i < teams.length; i++) 
+                            {
 
-                            //   let row1 = document.createElement("TR");
-                            //   row1.setAttribute("id", fileName + "row1");
-                            //   document.getElementById(fileName + "table").appendChild(row1);
+                                var team = teams[i];
+                                var side = team.getSide();
 
-                            //   let row2 = document.createElement("TR");
-                            //   row2.setAttribute("id", fileName + "row2");
-                            //   document.getElementById(fileName + "table").appendChild(row2);
+                                //Set scores to team variables
+                                if(team.getSide() == 'TERRORIST')
+                                {
+                                    tSide = team.getScore();
+                                }
+                                else if (team.getSide() == 'CT')
+                                {
+                                    ctSide = team.getScore();
+                                }
 
-                              //Header
-                              for(let i = 0; i < fields.length; i++)
-                              {
-                                  let data = document.createElement("TH");
-                                  let text = document.createTextNode(fields[i]);
-                                  data.appendChild(text);
-                                  document.getElementById(fileName + "row1").appendChild(data);
-                              }
+                                //Iterate round
+                                previousRound += team.getScore();
 
-                              //Appends data from database into table
-                              for(let i = 0; i < FortNiteData.length; i++)
-                              {
-                                  let data = document.createElement("TD");
-                                  let text = document.createTextNode(FortNiteData[i]);
-                                  data.appendChild(text);
-                                  document.getElementById(fileName + "row2").appendChild(data);
-                              }
+                                
+                            }
+                            //To display scores/round
+                            //console.log('TERRORIST' + " " + tSide);
+                            //console.log('CT' + " " + ctSide);
 
-                              // quick, dirty solution to add some spacing
-                              let pad = document.createElement("p");
-                              let t = document.createTextNode("");
-                              pad.appendChild(t);
-                              document.getElementById(fileName + "table").appendChild(pad);
+                            //0 = win, 1 = lose, 2 = tie
+                            if(tSide < ctSide && currPlayerSide == 'TERRORIST')
+                            {
+                                winLose = 0;
+                            }
+                            else if (ctSide < tSide && currPlayerSide == 'CT')
+                            {
+                                winLose = 0;
+                            }
+                            else if (ctSide == tSide)
+                            {
+                                winLose = 2
+                            }
+                            else
+                            {
+                                winLose = 1;
+                            }
 
-                              i++
+                            //Player's username
+                            username = player[currentPos].getName();
+                            //console.log("\n"+ username);
 
-                        });
-                      });
+                            //Headshots
+                            headshots += player[currentPos].getRoundHeadshotKills();
+                            //console.log("Headshots: " + headshots);
+
+                            //Kills
+                            kills += player[currentPos].getRoundKills();
+                            //console.log("Kills: " + kills);
+
+                        }).
+
+                        //Checks event of each death
+                        on('game.player_death', function(e) 
+                        {
+                            if (e.player != undefined)
+                            {
+                                //console.log(e.player.getName());
+
+                                //If player's name is displayed, iterate death by 1
+                                if(e.player.getName() == 'dennis')
+                                {
+                                    deaths++;
+                                }
+                            }
+                            
+                            //Deaths
+                            //console.log("Deaths: " + deaths);
+
+                            //Calculate K/D
+                            kd = (kills/deaths);
+                            //console.log("K/D: " + kd);
+                        }).
+
+                        parse(data);
+                        //console.log("\n"+ username);
+                        //console.log("Deaths: " + deaths);
+                        //console.log("K/D: " + kd.toFixed(2));
+                        //console.log("Kills: " + kills);
+                        //console.log("Headshots: " + headshots);
+                        //console.log("Win/Lose/Tie: " + winLose);
+
+                        if (winLose == 0)
+                        {
+                            winLose2 = "Won"
+                        }
+                        else if (winLose == 1)
+                        {
+                            winLose2 = "Lost"
+                        }
+                        else
+                        {
+                            winLose2 = "Tied"
+                        }
+
+                        document.getElementById("kill").innerHTML= kills;
+                        document.getElementById("death").innerHTML= deaths;
+                        document.getElementById("killdeath").innerHTML= kd.toFixed(2);
+                        document.getElementById("headshot").innerHTML= headshots;
+                        document.getElementById("WTL").innerHTML= winLose2;
+
+                        console.log("Ended");
                     });
-
-
                 </script>
 
         </header>
