@@ -13,102 +13,47 @@
         <!-- Custom CSS stylesheet -->
         <link rel="stylesheet" href="assets/css/index.css">
 
-        <link rel="import" href="assets/sections/career-stats.html">
-        <link rel="import" href="assets/sections/leaderboard.html">
-        <link rel="import" href="assets/sections/session-data.html">
-
-        <!-- <link rel="import" href="assets/sections/csGo-session-data.html"> -->
-
+        <link rel="import" href="assets/sections/Fortnite-career-stats.html">
+        <link rel="import" href="assets/sections/Fortnite-leaderboard.html">
+        <link rel="import" href="assets/sections/Fortnite-session-data.html">
     </head>
 
     <body>
         <div class="sidenav">
+            <a href="#Blast" style="padding:20px;"><img class="icon" style="height: 66px; width: 66px; margin-top:0px;" src="assets/images/blast-icon.png" alt="Blast icon"></a>
 
-            <ul>
-                <li class="setuplinehigh"  class="img-responsive" style= "margin-top:30%;" >
-                    <a href="#" class="vertical" id="icon1"> 
-                        <img src="assets/images/blast-icon.png"  style="margin-right:30px; width:55px; height:55px;" alt="blast-icon"> 
-                    </a>
-                    <hr id=linebar>
-                    
-                    <hr id="line">
-                </li>
-        
-                <li class="setuplinehigh"  class="img-responsive">
-                    <a href="#" class="vertical" id="icon2" >
-                        <img src="assets/images/fornite2.jpg"  style="margin-right:30px; width:52px; height:52px;" alt="Fortnite icon">
-                    </a>
-                    <hr id=linebar>
-                    <hr id="line">
-                </li>
-        
-        
-                <li class="setuplinehigh"  class="img-responsive"> 
-                    <a href="#" class="vertical" id="icon3">
-                        <img src="assets/images/hs.png"  style="margin-right:30px; width:70px; height:65px;" alt="HeartStone icon">
-                    </a>
-                    <hr id=linebar>
-                    <hr id="line">
-                
-                </li>
-        
-        
-                <li class="setuplinehigh"  class="img-responsive"> 
-                    <a href="#" class="vertical" id= "icon4">
-                        <img src="assets/images/csgo.png" style="margin-right:30px; width:55px; height:55px;" alt="csGo"> 
-                    </a> 
-                    <hr id=linebar>
-                    <hr id="line">
-                </li>
+            <a href="index.html" class="active" style="padding:20px;"><img src="assets/images/fortnite.jpg" alt="Fortnite icon"></a>
+            <a href="csgo.html" style="padding:20px;"><img src="assets/images/csgo.png" alt="csgo icon"></a>
 
-            </ul>
-        
             <i class="fa fa-plus-square-o"></i>
-            <button class="btn btn-default" style="padding:10px; width: 60px; height: 60px; border-radius: 8px; border: solid 1px #9ba9bb; margin-top:10px; background-attachment: fixed;"> <img src="assets/images/add.png" alt="add" style="width:30px; height:30px;"> </button>
+            <button class="btn btn-default" style=" width: 60px; height: 60px; border-radius: 8px; border: solid 1px #9ba9bb; "> <img src="assets/images/add.png" alt="add" style="width:30px; height:30px;"> </button>
 
-            <button class="button-logout" id="btn-logout" style="left: 1.8em; padding:10px; text-align:center; bottom: 3px; width:90px; margin-top:230px; border-radius: 4px; background-attachment: fixed;">Log Out</button>
-        
+            <button class="button-logout" id="btn-logout" style="left: 1.8em; padding:5px; text-align:center; position: absolute; bottom: 3px; width:90px; margin-bottom:20px; border-radius: 4px;">Log Out</button>
         </div>
-
 
         <div class="topnav">
             <header>
-                <h3 class="game" id="logoTitle">FORTNITE</h3>
-    
+                <h3 class="game">Fortnite</h3>
+
                 <h4 class="playerName" id = "theUserName"></h4>
 
             </header>
-            <button type="button" id="button-session-data" data-section="session-data" class="nav-button">SESSION DATA</button>
-            <button type="button" id="button-career-stats" data-section="career-stats" class="nav-button">CAREER STATS</button>
-            <button type="button" id="button-leaderboard" data-section="leaderboard" class="nav-button">LEADERBOARD</button>
+            <button type="button" id="button-session-data" data-section="Fortnite-session-data" class="nav-button">SESSION DATA</button>
+            <button type="button" id="button-career-stats" data-section="Fortnite-career-stats" class="nav-button">CAREER STATS</button>
+            <button type="button" id="button-leaderboard" data-section="Fortnite-leaderboard" class="nav-button">LEADERBOARD</button>
         </div>
 
         <main class="content"></main>
         <script>
             require('./assets/imports')
             require('./assets/nav')
-           
 
         </script>
 
+
+
         <script>
               document.getElementById("theUserName").innerHTML=localStorage.getItem("loginUser");
-
-              document.getElementById("icon1").onclick = function(){
-                  document.getElementById("logoTitle").innerHTML = "BLAST";
-              }
-
-                 document.getElementById("icon2").onclick = function(){
-                  document.getElementById("logoTitle").innerHTML = "FORTNITE";
-              }
-
-                 document.getElementById("icon3").onclick = function(){
-                  document.getElementById("logoTitle").innerHTML = "HEARTSTONE";
-              }
-
-              document.getElementById("icon4").onclick = function(){
-                  document.getElementById("logoTitle").innerHTML = "CSGO";
-              }
 
             let $ = require('jquery')
             const ipc = require('electron').ipcRenderer;

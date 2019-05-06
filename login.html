@@ -20,23 +20,23 @@
 
                 <h1>  <img src=assets/images/login-logo.png></h1>
 
-            <form class="loginform">
+            <form>
 
                 <p>Email/Username</p>
                 <input type="text" id="user" placeholder="Enter email/username">
-    
+
                 <p>Password</p>
                 <input type="password" id="pw" placeholder="Enter password">
-                <button type = "submit" onclick="myFunction()">LOGIN</button>
+                <button type = "submit" style="color:white" onclick="myFunction()">LOGIN</button>
 
-                <a href="#" style="margin-left: 150px; color: #454176; font-size: 16px;
+                <a href="#" style="margin-left: 150px; color: white; font-size: 16px;
                 font-weight:bold;">Blast.com</a>
 
             </form>
         </div>
 
         <script>
-            function myFunction() 
+            function myFunction()
             {
                 let $ = require('jquery')
                 let fs = require('fs')
@@ -56,7 +56,7 @@
                 {
                     alert("Password is invalid!");
                 }
-                
+
             }
         </script>
 

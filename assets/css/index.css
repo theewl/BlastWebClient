@@ -18,13 +18,13 @@ body {
 }
 
 .content {
-    margin-left: 130px;
+    margin-left: 160px;
     margin-top:30px;
 }
 
 .sidenav {
     height: 100%;
-    width: 160px;
+    width: 150px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -35,7 +35,6 @@ body {
     text-align: center;
 }
 
-/* 
 .sidenav a {
     text-decoration: none;
     font-size: 25px;
@@ -43,105 +42,28 @@ body {
     display: block;
     margin-bottom: 10px;
 }
- */
 
-/* 
 .sidenav a.active {
     border-left: 5px solid mediumspringgreen;
-} */
+}
 
-
-/* 
 .sidenav-bottom {
     float: bottom;
-} */
+}
 
-/* 
 .sidenav i {
     color: #818181;
     display: block;
     font-size: 70px;
 }
- */
-
- 
-
 
 .sidenav img {
     width: 60px;
     height: 60px;
 }
 
-a.vertical{
-    display:block;
-    text-decoration:none;
-    margin:0;
-    padding:0;
-}
-
-
-li{
-    list-style:none;
-    height:150px;
-}
-
-
-#line{
-    background-color: mediumspringgreen;
-    width: 0.1rem;
-    height:50px;
-    border: 5px solid mediumspringgreen;
-    border-radius:0 50px 50px 0;
-    margin-left: -40px;
-    transform: rotate(180deg);
-    visibility: hidden;
-    opacity: 0;
-}
-
-
-#icon1:focus ~hr{
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.2s linear;
-    bottom:50%;
-    transform:translateY(-155%);
-} 
-
-#icon2:focus ~hr{
-    bottom:50%;
-    transform:translateY(-150%);
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.2s linear; 
-}
-
-#icon3:focus ~hr{
-    bottom:50%;
-    transform:translateY(-145%);
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.2s linear;
-}
-
-#icon4:focus ~hr{
-    bottom:50%;
-    transform:translateY(-140%);
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.2s linear;
-}
-
-#linebar{
-    border-radius: 100px;
-    background-color: #6703ff;
-    width:70px;
-    margin-right:30px;
-
-}
-
-
 .topnav {
-    margin-left: 160px; /* Same as the width of the sidenav */
+    margin-left: 150px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px;
     background-image: linear-gradient(to bottom, #181543, #110f36);
@@ -265,12 +187,10 @@ p{
 
 .nav-item{
  margin: 0 auto;
- 
+
 }
 
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
-
-

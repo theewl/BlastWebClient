@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Blast</title>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <!-- Custom CSS stylesheet -->
+        <link rel="stylesheet" href="assets/css/index.css">
+
+        <link rel="import" href="assets/sections/csgo-career-stats.html">
+        <link rel="import" href="assets/sections/csgo-leaderboard.html">
+        <link rel="import" href="assets/sections/csgo-session-data.html">
+    </head>
+
+    <body>
+      <div class="sidenav">
+          <a href="#Blast" style="padding:20px;"><img class="icon" style="height: 66px; width: 66px; margin-top:0px;" src="assets/images/blast-icon.png" alt="Blast icon"></a>
+
+          <a href="index.html" style="padding:20px;"><img src="assets/images/fortnite.jpg" alt="Fortnite icon"></a>
+          <a href="csgo.html" class="active" style="padding:20px;"><img src="assets/images/csgo.png" alt="csgo icon"></a>
+
+          <i class="fa fa-plus-square-o"></i>
+          <button class="btn btn-default" style=" width: 60px; height: 60px; border-radius: 8px; border: solid 1px #9ba9bb; "> <img src="assets/images/add.png" alt="add" style="width:30px; height:30px;"> </button>
+
+          <button class="button-logout" id="btn-logout" style="left: 1.8em; padding:5px; text-align:center; position: absolute; bottom: 3px; width:90px; margin-bottom:20px; border-radius: 4px;">Log Out</button>
+      </div>
+
+        <div class="topnav">
+            <header>
+                <h3 class="game">CSGO</h3>
+
+                <h4 class="playerName" id = "theUserName"></h4>
+
+            </header>
+            <button type="button" id="button-session-data" data-section="csgo-session-data" class="nav-button">SESSION DATA</button>
+            <button type="button" id="button-career-stats" data-section="csgo-career-stats" class="nav-button">CAREER STATS</button>
+            <button type="button" id="button-leaderboard" data-section="csgo-leaderboard" class="nav-button">LEADERBOARD</button>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script>
+          $('.siderbar1 a').on('click', function(e) {
+            e.preventDefault();
+            $('.siderbar1 a').removeClass('active');
+            $(this).addClass('active');
+        })
+        </script>
+
+        <main class="content"></main>
+        <script>
+            require('./assets/imports')
+            require('./assets/nav')
+
+        </script>
+
+
+
+        <script>
+              document.getElementById("theUserName").innerHTML=localStorage.getItem("loginUser");
+
+            let $ = require('jquery')
+            const ipc = require('electron').ipcRenderer;
+            $('#btn-logout').on('click', () => {
+                ipc.sendSync('entry-accepted', 'ping2')
+            })
+        </script>
+    </body>
+
+</html>

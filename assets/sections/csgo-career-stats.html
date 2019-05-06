@@ -1,0 +1,250 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+
+
+<template class="task-template">
+    <section id="csgo-career-stats-section" class="section js-section u-category-career-stats">
+        <header class="section-header">
+
+            <main role="main" class="col-md-12">
+
+            <div class="container" style="margin-top:10px; padding-bottom:20px;">
+
+             <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="card">
+                                        <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                            <p style="color:white; font-size: 15px; text-align: middle;">All - Time Statistics</p>
+                                        </div>
+
+                                        <div class="card-body" style="background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                            <div class="row">
+                                                <div class="col-md-6">
+
+                                                    <p style="font-size:11px;"> ACCOUNT NAME </p>
+                                                    <p class="data" id = "accName"> </p>
+
+                                                    <p> PLATFORM </p>
+                                                    <p class="data" id = "platform"> </p>
+
+                                                    <p> SCORE </p>
+                                                    <p class="data" id = "score"> </p>
+
+                                                    <p> KILLS </p>
+                                                    <p class="data" id = "kills"></p>
+                                                    </div>
+
+
+                                                <div class="col-md-6 leftLine">
+
+                                                    <p> KILLS/DEATHS </p>
+                                                    <p class="data" id = "kd"> </p>
+
+
+                                                    <p>  WINS </p>
+                                                    <p class="data" id = "wins"> </p>
+
+                                                    <p>  WIN RATE </p>
+                                                    <p class="data" id = "winRate"> </p>
+                                                <!-- <img src="assets/images/first.png" alt=""> -->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="card">
+                                    <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                        <p style="color:white; font-size: 15px; text-align: middle;">SOLO</p>
+                                    </div>
+
+                                    <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p> SCORE </p>
+                                                <p class="data" id = "SOLOscore"></p>
+
+                                                <p> KILLS </p>
+                                                <p class="data" id = "SOLOkills"></p>
+                                                </div>
+
+
+
+                                                <div class="col-md-6 leftLine">
+
+                                                    <p> KILLS/DEATHS </p>
+                                                    <p class="data" id = "SOLOkd"></p>
+
+
+                                                    <p>  WINS </p>
+                                                    <p class="data" id = "SOLOwins"></p>
+
+                                                    <p>  WIN RATE </p>
+                                                    <p class="data" id = "SOLOwinRate"></p>
+                                                <!-- <img src="assets/images/second.png" alt="image"> -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="card">
+                                        <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                            <p style="color:white; font-size: 15px; text-align: middle;">DUO</p>
+                                        </div>
+
+                                        <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                            <div class="row">
+                                                <div class="col-md-6">
+
+                                                    <p> SCORE </p>
+                                                    <p class="data" id = "DUOscore"></p>
+
+                                                    <p> KILLS </p>
+                                                    <p class="data" id = "DUOkills"></p>
+                                                    </div>
+
+
+                                                <div class="col-md-6 leftLine">
+
+
+                                                    <p> KILLS/DEATHS </p>
+                                                    <p class="data" id = "DUOkd"></p>
+
+
+                                                    <p>  WINS </p>
+                                                    <p class="data" id = "DUOwins"></p>
+
+                                                    <p>  WIN RATE </p>
+                                                    <p class="data" id = "DUOwinRate"></p>
+                                                <!-- <img src="assets/images/third.png" alt=""> -->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="card">
+                                    <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                        <p style="color:white; font-size: 15px; text-align: middle;">SQUAD</p>
+                                    </div>
+
+                                    <div class="card-body" style=" background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                        <div class="row">
+                                            <div class="col-md-6">
+
+                                                <p> SCORE </p>
+                                                <p class="data" id = "SQUADscore"></p>
+
+                                                <p> KILLS </p>
+                                                <p class="data" id = "SQUADkills"></p>
+                                                </div>
+
+                                                <div class="col-md-6 leftLine">
+
+
+                                                    <p> KILLS/DEATHS </p>
+                                                    <p class="data" id = "SQUADkd"></p>
+
+
+                                                    <p>  WINS </p>
+                                                    <p class="data" id = "SQUADwins"></p>
+
+                                                    <p>  WIN RATE </p>
+                                                    <p class="data" id = "SQUADwinRate"></p>
+                                                <!-- <img src="assets/images/fourth.png" alt=""> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <script>
+                const fnt = require('/Github/BlastWebClient/assets/sections/fnAPI.js');
+
+                fnt.getStats(localStorage.getItem("loginUser"), "pc", (err, result) =>
+                {
+                    if(err)
+                    {
+                        console.log(err.message);
+                    }else
+                    {
+                        if (result.platform == 1)
+                        {
+                            platform = "xbox";
+                        }
+                        else if (result.platform == 2)
+                        {
+                            platform = "ps4";
+                        }
+                        else
+                        {
+                            platform = "pc";
+                        }
+
+                        document.getElementById("accName").innerHTML=result.accountName;
+                        document.getElementById("platform").innerHTML= platform;
+                        document.getElementById("score").innerHTML=result.score;
+                        document.getElementById("kills").innerHTML=result.kills;
+                        document.getElementById("kd").innerHTML=result.kd;
+                        document.getElementById("wins").innerHTML=result.wins;
+                        document.getElementById("winRate").innerHTML=result.wr;
+
+                        //SOLO
+                        document.getElementById("SOLOscore").innerHTML=result.soloScore;
+                        document.getElementById("SOLOkills").innerHTML=result.soloKills;
+                        document.getElementById("SOLOkd").innerHTML=result.soloKd;
+                        document.getElementById("SOLOwins").innerHTML=result.soloWins;
+                        document.getElementById("SOLOwinRate").innerHTML=result.soloWr;
+
+                        //DUO
+                        document.getElementById("DUOscore").innerHTML=result.duoScore;
+                        document.getElementById("DUOkills").innerHTML=result.duoKills;
+                        document.getElementById("DUOkd").innerHTML=result.duoKd;
+                        document.getElementById("DUOwins").innerHTML=result.duoWins;
+                        document.getElementById("DUOwinRate").innerHTML=result.duoWr;
+
+                        //SQUAD
+                        document.getElementById("SQUADscore").innerHTML=result.squadScore;
+                        document.getElementById("SQUADkills").innerHTML=result.squadKills;
+                        document.getElementById("SQUADkd").innerHTML=result.squadKd;
+                        document.getElementById("SQUADwins").innerHTML=result.squadWins;
+                        document.getElementById("SQUADwinRate").innerHTML=result.squadWr;
+                    }
+                });
+            </script>
+        </header>
+    </section>
+</template>
