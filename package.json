@@ -9,10 +9,11 @@
   "author": "TeamRocket-UCI",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^4.1.4"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "electron": "^5.0.1",
+    "electron-settings": "^3.2.0",
     "jquery": "^3.3.1",
     "mysql": "^2.16.0",
     "python-shell": "^1.0.7"

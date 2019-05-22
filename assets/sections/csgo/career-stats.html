@@ -1,0 +1,103 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+
+
+<template class="task-template">
+    <section id="CS:GO-career-stats-section" class="section js-section u-category-career-stats">
+        <header class="section-header">
+
+            <main role="main" class="col-md-12">
+
+            <div class="container" style="margin-top:10px; padding-bottom:20px;">
+
+             <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="card">
+                                        <div class="card-header" style="background-image: linear-gradient(to right, #2d1ea6, #ad43b4); border-image-source: linear-gradient(to left, #3322b5, #d667dd);border-image-slice: 1;">
+                                            <p style="color:white; font-size: 15px; text-align: middle;">All - Time Statistics</p>
+                                        </div>
+
+                                        <div class="card-body" style="background-image: linear-gradient(to bottom, #161241, #14103d);";>
+                                            <div class="row">
+                                                <div class="col-md-6">
+
+
+                                                    <p> KILLS </p>
+                                                    <p class="data" id = "ckills"> </p>
+
+                                                    <p> DEATHS </p>
+                                                    <p class="data" id = "cdeaths"> </p>
+
+                                                    <p> TIME PLAYED </p>
+                                                    <p class="data" id = "cTimePlayed"></p>
+                                                    </div>
+
+
+                                                <div class="col-md-6 leftLine">
+
+                                                    <p> KILLS/DEATHS </p>
+                                                    <p class="data" id = "cKD"> </p>
+
+
+                                                    <p>  WINS </p>
+                                                    <p class="data" id = "cwins"> </p>
+
+                                                    <p>  DAMAGE DONE </p>
+                                                    <p class="data" id = "cdamage"> </p>
+
+                                                    <p>  MONEY EARNED </p>
+                                                    <p class="data" id = "cmoney"> </p>
+                                                <!-- <img src="assets/images/first.png" alt=""> -->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+            <script>
+                var career_kills = 0;
+                var career_deaths = 0;
+                var career_timePlayed = 0;
+                var career_wins = 0;
+                var career_kd = 0;
+                var career_damage = 0;
+                var career_money = 0;
+
+                const csgoStats = require('/Users/TheEWL/Desktop/BlastWebClient/csgo-careerStats');
+                csgoStats.load({
+                    //STILL need to get id for our csgo account for demo
+                    key: '558962B384ED254B5CE7DE6F188A1E78',
+                    id: '76561198138999275'
+                }).then(r => 
+                {
+                    career_kills = r.body.playerstats.stats[0].value;
+                    career_deaths = r.body.playerstats.stats[1].value;
+                    career_timePlayed = r.body.playerstats.stats[2].value;
+                    career_wins = r.body.playerstats.stats[5].value
+                    career_kd = (kills / deaths);
+                    career_damage = r.body.playerstats.stats[6].value
+                    career_money = r.body.playerstats.stats[7].value
+
+                        document.getElementById("ckills").innerHTML= career_kills;
+                        document.getElementById("cdeaths").innerHTML= career_deaths;
+                        document.getElementById("cTimePlayed").innerHTML= parseInt(career_timePlayed * 0.000277778);
+                        document.getElementById("cKD").innerHTML= career_kd.toFixed(2);
+                        document.getElementById("cwins").innerHTML= career_wins;
+                        document.getElementById("cdamage").innerHTML= career_damage;
+                        document.getElementById("cmoney").innerHTML= career_money;
+
+
+                }).catch(e => console.error(e));
+            </script>
+        </header>
+    </section>
+</template>

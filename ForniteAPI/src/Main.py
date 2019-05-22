@@ -3,7 +3,8 @@ import sys
 
 #print(sys.argv[1])
 
-with Reader("C:/Users/trana/AppData/Local/FortniteGame/Saved/Demos" + "/" + sys.argv[1]) as replay:
+# ideally we will pass the entire path via parameter
+with Reader("/Users/TheEWL/Desktop/BlastWebClient_v2/Replays" + "/" + sys.argv[1]) as replay:
     print(replay.stats['eliminations'])
     print(replay.stats['assists'])
     print(replay.stats['revives'])

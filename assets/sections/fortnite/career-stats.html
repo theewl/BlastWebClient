@@ -1,0 +1,24 @@
+<template class="task-template">
+    <section id="Fortnite-career-stats-section" class="section js-section u-category-career-stats">
+
+            <script>
+                //const fnt = require('/Users/TheEWL/Desktop/BlastWebClient/assets/sections/fnAPI.js');
+                let fnt = require('/Users/TheEWL/Desktop/BlastWebClient_v2/assets/sections/fnAPI.js');
+                let careerStats = require('./assets/sections/tables')
+
+                //user = localStorage.getItem("loginUser")
+                user = "Ninja" // for testing purposes
+
+                fnt.getStats(user, "pc", (err, result) =>
+                {
+                    //console.log(result)
+                    if(err){
+                        console.log(err.message);
+                    }
+                    else{
+                        careerStats.displayCareerStats(result, "Fortnite-career-stats-section")
+                    }
+                });
+            </script>
+    </section>
+</template>

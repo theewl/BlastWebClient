@@ -5,9 +5,9 @@
 body {
     background-image: url('../images/background.png');
     background-position: center center;
-		background-repeat:  no-repeat;
-		background-attachment: fixed;
-		background-size:  cover;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
 }
 
 .button-logout {
@@ -17,10 +17,41 @@ body {
     color: white;
 }
 
+.card-body {
+    background-image: linear-gradient(to bottom, #161241, #14103d);
+    table-layout: fixed;
+}
+
+.card-header {
+    background-image: linear-gradient(to right, #2d1ea6, #ad43b4);
+    border-image-source: linear-gradient(to left, #3322b5, #d667dd);
+    border-image-slice: 1;
+}
+
+.card-header p {
+    color: white;
+    font-size: 13px;
+    text-align: right;
+}
+
+.card-row-header {
+    color: #a29de2;
+    padding-top: 3px;
+    font-size: 16px;
+    font-weight:bold;
+}
+
+.container {
+    margin-top: 10px;
+    nargin-left: 160px;
+}
+
 .content {
     margin-left: 160px;
     margin-top:30px;
 }
+
+
 
 .sidenav {
     height: 100%;

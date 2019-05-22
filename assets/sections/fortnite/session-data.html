@@ -1,0 +1,90 @@
+<template class="task-template">
+    <section id="Fortnite-session-data-section" class="section js-section u-category-session-data">
+        <script type="text/javascript">
+            // eventually we're going to want to connect to database in a seperate
+            // js file so we can avoid code duplication
+            let table = require('./assets/sections/tables')
+
+                    'use strict';
+                    const fs = require('fs');
+                    // the path below will not work on your machine
+                    let files = fs.readdirSync('/Users/TheEWL/Desktop/BlastWebClient_v2/Replays');
+
+                    console.log(files.length)
+
+                    let i = 1
+                    let id = 0
+                    var mysql = require('mysql');
+                    var connection = mysql.createConnection({
+                       host: "remotemysql.com",
+                       user: "LxpYo6DXca",
+                       password: "sDRWmqCi5P",
+                       database: "LxpYo6DXca"
+                   });
+
+                    //Array for storing data from database
+                    let FortNiteData = [0, 0, 0, 0, 0, 0]
+                    //Counter to iterate through columns in database
+                    let ctr = 0;
+
+                    //Counter for data to be placed in html code
+                    let iterate = 0;
+
+                    files.forEach(fileName =>
+                    {
+                        let {PythonShell} = require('python-shell')
+
+                        let options = {
+                            args: [fileName]
+                        };
+
+                        let fields = ["eliminations", "assists", "revives", "accuracy", "damage taken", "place"]
+
+                        var today = new Date();
+                        var date = (today.getMonth()+1)+'-'+ today.getDate() +'-'+ today.getFullYear();
+                        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                        var dateTime = date +' '+ time;
+                        console.log(dateTime)
+
+                        PythonShell.run('./ForniteAPI/src/Main.py', options, function  (err, results)  {
+                            if  (err)  throw err;
+
+                          //Writes data to database
+                          var sql = mysql.format("INSERT INTO stats (id, eliminations,assists,revives,accuracy,damage_taken, place, timestamp) VALUES (?, ?, ?, ? ,?, ?, ?,?)", [ctr, results[0], results[1], results[2], results[3], results[4], results[5], dateTime]);
+                          ctr++;
+                          // execute the insert statement
+                          connection.query(sql, function (err, result)
+                          {
+                              if(err)
+                              {
+                                  console.log("An error ocurred performing the query.");
+                                  console.log(err);
+                                  return;
+                              }
+                              console.log("Fortnite INSERT Query succesfully executed");
+                          });
+                      });
+                    });
+                    
+                  //Put data from database into tables
+                  connection.connect(function(err)
+                  {
+                      if (err) throw err;
+
+                      //console.log("connected")
+
+                      const query = "SELECT place, assists, revives, accuracy, eliminations, damage_taken, id, timestamp FROM stats"
+
+                      connection.query(query, function (err, result, fields) {
+                          if (err) throw err;
+                          console.log("Fortnite querying...")
+                          table.displaySessionData(result, fields, "Fortnite-session-data-section")
+                          //table.createTable(result, fields)
+                          
+                      });
+                    });
+                    
+
+        </script>
+    </section>
+</template>

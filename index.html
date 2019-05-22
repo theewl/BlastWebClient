@@ -8,22 +8,25 @@
 
         <title>Blast</title>
 
-        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-        <!-- Custom CSS stylesheet -->
         <link rel="stylesheet" href="assets/css/index.css">
 
-        <link rel="import" href="assets/sections/Fortnite-career-stats.html">
-        <link rel="import" href="assets/sections/Fortnite-leaderboard.html">
-        <link rel="import" href="assets/sections/Fortnite-session-data.html">
+
+        <link rel="import" href="assets/sections/fortnite/career-stats.html">
+        <link rel="import" href="assets/sections/fortnite/leaderboard.html">
+        <link rel="import" href="assets/sections/fortnite/session-data.html">
+        <link rel="import" href="assets/sections/csgo/career-stats.html">
+        <link rel="import" href="assets/sections/csgo/leaderboard.html">
+        <link rel="import" href="assets/sections/csgo/session-data.html">
     </head>
 
     <body>
         <div class="sidenav">
             <a href="#Blast" style="padding:20px;"><img class="icon" style="height: 66px; width: 66px; margin-top:0px;" src="assets/images/blast-icon.png" alt="Blast icon"></a>
 
-            <a href="index.html" class="active" style="padding:20px;"><img src="assets/images/fortnite.jpg" alt="Fortnite icon"></a>
-            <a href="csgo.html" style="padding:20px;"><img src="assets/images/csgo.png" alt="csgo icon"></a>
+            <a class="dummy" href="#Fortnite" style="padding:20px;"><img id="button-fn" data-game="Fortnite" src="assets/images/fortniteIcon.png" alt="Fortnite icon"></a>
+            <a class="dummy" href="#CSGO" style="padding:20px;"><img id="button-csgo" data-game="CS:GO" src="assets/images/csgo.png" alt="csgo icon"></a>
 
             <i class="fa fa-plus-square-o"></i>
             <button class="btn btn-default" style=" width: 60px; height: 60px; border-radius: 8px; border: solid 1px #9ba9bb; "> <img src="assets/images/add.png" alt="add" style="width:30px; height:30px;"> </button>
@@ -33,33 +36,27 @@
 
         <div class="topnav">
             <header>
-                <h3 class="game">Fortnite</h3>
-
+                <h3 class="game" id="game">Fortnite</h3>
                 <h4 class="playerName" id = "theUserName"></h4>
-
             </header>
-            <button type="button" id="button-session-data" data-section="Fortnite-session-data" class="nav-button">SESSION DATA</button>
-            <button type="button" id="button-career-stats" data-section="Fortnite-career-stats" class="nav-button">CAREER STATS</button>
-            <button type="button" id="button-leaderboard" data-section="Fortnite-leaderboard" class="nav-button">LEADERBOARD</button>
+            <button type="button" id="button-session-data" data-section="session-data" class="nav-button">SESSION DATA</button>
+            <button type="button" id="button-career-stats" data-section="career-stats" class="nav-button">CAREER STATS</button>
+            <button type="button" id="button-leaderboard" data-section="leaderboard" class="nav-button">LEADERBOARD</button>
         </div>
 
         <main class="content"></main>
-        <script>
-            require('./assets/imports')
-            require('./assets/nav')
-
-        </script>
-
-
 
         <script>
-              document.getElementById("theUserName").innerHTML=localStorage.getItem("loginUser");
+            document.getElementById("theUserName").innerHTML=localStorage.getItem("loginUser");
 
             let $ = require('jquery')
             const ipc = require('electron').ipcRenderer;
             $('#btn-logout').on('click', () => {
                 ipc.sendSync('entry-accepted', 'ping2')
             })
+
+            require('./assets/imports')
+            require('./assets/nav')
         </script>
     </body>
 
