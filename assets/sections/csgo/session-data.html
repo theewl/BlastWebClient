@@ -2,7 +2,7 @@
 
 <template class="task-template">
     <section id="CS:GO-session-data-section" class="section js-section u-category-session-data">
-        
+
             <script type="text/javascript">
                 // eventually we're going to want to connect to database in a seperate
                 // js file so we can avoid code duplication
@@ -12,9 +12,9 @@
                 var id2 = 0
 
                 //PUT EACH REPLAY FILE INDIVIDUALLY INTO DATABASE
-                //CHECK FOR IDS, IF ID IS ALRAEDY IN DATABASE, DONT RUN. IF ID IS GREATER THAN IDS, THEN RUN AND ADD. 
-                    
-                var jsgo = require('/Users/TheEWL/Desktop/BlastWebClient_v2/assets/sections/jsgo');
+                //CHECK FOR IDS, IF ID IS ALRAEDY IN DATABASE, DONT RUN. IF ID IS GREATER THAN IDS, THEN RUN AND ADD.
+
+                var jsgo = require('/Users/trana/Desktop/BlastWebClient_v2/assets/sections/jsgo');
 
                     //num of kills
                     var kills = 0;
@@ -42,10 +42,10 @@
                     //database numFile
                     var numFiles2
 
-                    const testFolder = '/Users/TheEWL/Desktop/BlastWebClient_v2/CSGO_Replays/';
+                    const testFolder = '/Users/trana/Desktop/BlastWebClient_v2/CSGO_Replays/';
 
                     //Check to see current replay files
-                    fs.readdir(testFolder, (err, files) => 
+                    fs.readdir(testFolder, (err, files) =>
                     {
                       console.log("Num of replay files" + files.length)
                       numFiles1 = files.length
@@ -66,13 +66,13 @@
 
                   //Checks numFiles that is in database
                  const query2 = "SELECT numFiles FROM new_table"
-                 connection.query(query2, function (err, result, fields) 
+                 connection.query(query2, function (err, result, fields)
                  {
                     if (err) throw err;
                     console.log("CSGO numFiles Checked")
                     numFiles2 = result[0].numFiles
 
-                    //Update database if new replay files were added, else just display tables 
+                    //Update database if new replay files were added, else just display tables
                     if(numFiles1 != numFiles2)
                     {
                       var sql3 = mysql.format("UPDATE new_table SET numFiles" + "='" + numFiles1 + "' WHERE id = 1")
@@ -88,10 +88,10 @@
                           }
                           console.log("CSGO UPDATE Query succesfully executed");
                       });
-                    
-                    fs.readdir(testFolder, (err, files) => 
+
+                    fs.readdir(testFolder, (err, files) =>
                     {
-                      files.forEach(file => 
+                      files.forEach(file =>
                       {
                         var today = new Date();
                         var date = (today.getMonth()+1)+'-'+ today.getDate() +'-'+ today.getFullYear();
@@ -103,9 +103,9 @@
                             var myDemo = new jsgo.Demo().
 
                             //Checks event of each round
-                            on('game.round_officially_ended', function(event) 
+                            on('game.round_officially_ended', function(event)
                             {
-                                //Get teams 
+                                //Get teams
                                 var teams = this.getTeams();
                                 //Get players
                                 var player = this.getPlayers();
@@ -121,7 +121,7 @@
                                         currentPlayer = player[i].getName();
                                         currentPos = i;
                                         break;
-                                        
+
                                     }
                                 }
 
@@ -146,7 +146,7 @@
                                 var teams = this.getTeams();
 
                                 //Keeps track of score after each round
-                                for (var i = 0; i < teams.length; i++) 
+                                for (var i = 0; i < teams.length; i++)
                                 {
 
                                     var team = teams[i];
@@ -165,7 +165,7 @@
                                     //Iterate round
                                     previousRound += team.getScore();
 
-                                    
+
                                 }
                                 //To display scores/round
                                 //console.log('TERRORIST' + " " + tSide);
@@ -204,7 +204,7 @@
                             }).
 
                             //Checks event of each death
-                            on('game.player_death', function(e) 
+                            on('game.player_death', function(e)
                             {
                                 if (e.player != undefined)
                                 {
@@ -216,7 +216,7 @@
                                         deaths++;
                                     }
                                 }
-                                
+
                                 //Deaths
                                 //console.log("Deaths: " + deaths);
 
@@ -265,14 +265,14 @@
                     });
 
                             console.log("Ended");
-                    }); 
+                    });
 
                 }
                 else
                 {
 
                     const query2 = "SELECT kills, deaths, kd, headshots, wtl, timestamp FROM CSGO_stats"
-                    connection.query(query2, function (err, result, fields) 
+                    connection.query(query2, function (err, result, fields)
                     {
                         if (err) throw err;
                         console.log("CSGO querying...")

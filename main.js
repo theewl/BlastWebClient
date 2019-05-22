@@ -70,7 +70,7 @@ let child
 
 function createWindows() {
 
-    win =new BrowserWindow({width:900,height:600,minWidth:900, icon:"assets/images/icon.ico", show: false})
+    win =new BrowserWindow({minHeight:900, minWidth:900, webPreferences: {nodeIntegration: true}, icon:"assets/images/icon.ico", show: false})
 
     win.loadURL(url.format({
         pathname:path.join(__dirname,'index.html'),
@@ -78,7 +78,8 @@ function createWindows() {
         slashes:true
     }))
 
-    child = new BrowserWindow({parent: win,width:420,height:450})
+    child = new BrowserWindow({parent: win,width:420,height:450, webPreferences: {nodeIntegration: true},
+})
     child.loadURL(url.format({
         pathname:path.join(__dirname,'login.html'),
         protocol:'file',
@@ -92,6 +93,7 @@ ipcMain.on('entry-accepted', (event, arg) => {
     if(arg=='ping'){
         win.reload()
         win.show()
+        win.maximize()
         child.hide()
 
     }
@@ -103,4 +105,3 @@ ipcMain.on('entry-accepted', (event, arg) => {
   })
 
 app.on('ready',createWindows)
-

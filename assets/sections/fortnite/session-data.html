@@ -8,7 +8,7 @@
                     'use strict';
                     const fs = require('fs');
                     // the path below will not work on your machine
-                    let files = fs.readdirSync('/Users/TheEWL/Desktop/BlastWebClient_v2/Replays');
+                    let files = fs.readdirSync('/Users/trana/Desktop/BlastWebClient_v2/Replays');
 
                     console.log(files.length)
 
@@ -65,7 +65,7 @@
                           });
                       });
                     });
-                    
+
                   //Put data from database into tables
                   connection.connect(function(err)
                   {
@@ -80,10 +80,10 @@
                           console.log("Fortnite querying...")
                           table.displaySessionData(result, fields, "Fortnite-session-data-section")
                           //table.createTable(result, fields)
-                          
+
                       });
                     });
-                    
+
 
         </script>
     </section>

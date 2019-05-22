@@ -72,12 +72,12 @@
                 var career_damage = 0;
                 var career_money = 0;
 
-                const csgoStats = require('/Users/TheEWL/Desktop/BlastWebClient/csgo-careerStats');
+                const csgoStats = require('/Users/trana/Desktop/BlastWebClient_v2/csgo-careerStats');
                 csgoStats.load({
                     //STILL need to get id for our csgo account for demo
                     key: '558962B384ED254B5CE7DE6F188A1E78',
                     id: '76561198138999275'
-                }).then(r => 
+                }).then(r =>
                 {
                     career_kills = r.body.playerstats.stats[0].value;
                     career_deaths = r.body.playerstats.stats[1].value;
