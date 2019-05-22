@@ -6,3 +6,4 @@ NEED TO DO:
  - Display timestamp on top of table and not in the table.
  - Fix Alex's change requests
  - Fix table orders positionings (by timestamp and not vertical)
+ ..
