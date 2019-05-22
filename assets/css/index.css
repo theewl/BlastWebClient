@@ -17,6 +17,10 @@ body {
     color: white;
 }
 
+.card{
+    border:none;
+}
+
 .card-body {
     background-image: linear-gradient(to bottom, #161241, #14103d);
     table-layout: fixed;
@@ -43,7 +47,7 @@ body {
 
 .container {
     margin-top: 10px;
-    nargin-left: 160px;
+    /* margin-left: 120px; */
 }
 
 .content {
@@ -89,8 +93,9 @@ body {
 }
 
 .sidenav img {
-    width: 60px;
-    height: 60px;
+    width: 62px;
+    height: 62px;
+    border-radius: 11px; 
 }
 
 .topnav {
