@@ -32,7 +32,7 @@ module.exports =
 
                     row1 = createDiv("row")
                     col1 = createDiv("col-md-12")
-                    row2 = createDiv("row flex-nowrap")
+                    row2 = createDiv("row flex-row flex-nowrap")
 
                     //------------------------------------->
 
@@ -122,7 +122,7 @@ module.exports =
 
             row1 = createDiv("row")
             col1 = createDiv("col-md-12")
-            row2 = createDiv("row flex-nowrap")
+            row2 = createDiv("row flex-row flex-nowrap")
 
             // all time
             col2 = createDiv("col-md-3")
