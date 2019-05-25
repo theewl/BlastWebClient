@@ -20,7 +20,7 @@ module.exports =
                 {
                     currentDate = date
 
-                    container = createDiv("container")
+                    container = createDiv("container-fluid")
 
                     // card header (timestamp)
                     heading = document.createElement("h2")
@@ -32,7 +32,7 @@ module.exports =
 
                     row1 = createDiv("row")
                     col1 = createDiv("col-md-12")
-                    row2 = createDiv("row")
+                    row2 = createDiv("row flex-nowrap")
 
                     //------------------------------------->
 
@@ -122,11 +122,11 @@ module.exports =
 
             row1 = createDiv("row")
             col1 = createDiv("col-md-12")
-            row2 = createDiv("row")
+            row2 = createDiv("row flex-nowrap")
 
             // all time
             col2 = createDiv("col-md-3")
-            row3 = createDiv("row")
+            row3 = createDiv("row ")
             col3 = createDiv("col-md-12")
             allTime = {
                 "ACCOUNT NAME": result.accountName,

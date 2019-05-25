@@ -8,6 +8,7 @@ body {
     background-repeat:  no-repeat;
     background-attachment: fixed;
     background-size:  cover;
+  
 }
 
 .button-logout {
@@ -19,11 +20,13 @@ body {
 
 .card{
     border:none;
+    table-layout: fixed;
 }
 
 .card-body {
     background-image: linear-gradient(to bottom, #161241, #14103d);
     table-layout: fixed;
+   
 }
 
 .card-header {
@@ -36,23 +39,29 @@ body {
     color: white;
     font-size: 13px;
     text-align: right;
+
 }
 
 .card-row-header {
     color: #a29de2;
-    padding-top: 3px;
+    padding-top: 190px;
     font-size: 16px;
     font-weight:bold;
+   
 }
 
-.container {
-    margin-top: 10px;
-    /* margin-left: 120px; */
-}
+
 
 .content {
-    margin-left: 160px;
-    margin-top:30px;
+    margin-left: 210px;
+    /* margin-top:30px; */
+} 
+
+
+.container {
+    margin-top:0px; 
+    padding-top:180px;
+    margin-left: 16px;
 }
 
 
@@ -99,6 +108,9 @@ body {
 }
 
 .topnav {
+    position: fixed;
+    height: 15%;
+    width: 1400px;
     margin-left: 150px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px;
