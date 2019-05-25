@@ -72,31 +72,37 @@
                 var career_damage = 0;
                 var career_money = 0;
 
-                const csgoStats = require('/Users/kimki/Desktop/BlastWebClient/csgo-careerStats');
-                csgoStats.load({
-                    //STILL need to get id for our csgo account for demo
-                    key: '558962B384ED254B5CE7DE6F188A1E78',
-                    id: '76561198138999275'
-                }).then(r =>
+                const csgoStats = require('/Users/TheEWL/Desktop/BlastWebClient/csgo-careerStats');
+
+                function loadIt()
                 {
-                    career_kills = r.body.playerstats.stats[0].value;
-                    career_deaths = r.body.playerstats.stats[1].value;
-                    career_timePlayed = r.body.playerstats.stats[2].value;
-                    career_wins = r.body.playerstats.stats[5].value
-                    career_kd = (kills / deaths);
-                    career_damage = r.body.playerstats.stats[6].value
-                    career_money = r.body.playerstats.stats[7].value
+                	console.log("Checking CSGO career stats")
+	                csgoStats.load({
+	                    //STILL need to get id for our csgo account for demo
+	                    key: '558962B384ED254B5CE7DE6F188A1E78',
+	                    id: '76561198138999275'
+	                }).then(r =>
+	                {
+	                    career_kills = r.body.playerstats.stats[0].value;
+	                    career_deaths = r.body.playerstats.stats[1].value;
+	                    career_timePlayed = r.body.playerstats.stats[2].value;
+	                    career_wins = r.body.playerstats.stats[5].value
+	                    career_kd = (career_kills / career_deaths);
+	                    career_damage = r.body.playerstats.stats[6].value
+	                    career_money = r.body.playerstats.stats[7].value
 
-                        document.getElementById("ckills").innerHTML= career_kills;
-                        document.getElementById("cdeaths").innerHTML= career_deaths;
-                        document.getElementById("cTimePlayed").innerHTML= parseInt(career_timePlayed * 0.000277778);
-                        document.getElementById("cKD").innerHTML= career_kd.toFixed(2);
-                        document.getElementById("cwins").innerHTML= career_wins;
-                        document.getElementById("cdamage").innerHTML= career_damage;
-                        document.getElementById("cmoney").innerHTML= career_money;
+	                        document.getElementById("ckills").innerHTML= career_kills;
+	                        document.getElementById("cdeaths").innerHTML= career_deaths;
+	                        document.getElementById("cTimePlayed").innerHTML= parseInt(career_timePlayed * 0.000277778);
+	                        document.getElementById("cKD").innerHTML= career_kd.toFixed(2);
+	                        document.getElementById("cwins").innerHTML= career_wins;
+	                        document.getElementById("cdamage").innerHTML= career_damage;
+	                        document.getElementById("cmoney").innerHTML= career_money;
 
 
-                }).catch(e => console.error(e));
+	                }).catch(e => console.error(e));
+            	}
+            	loadIt()
             </script>
         </header>
     </section>

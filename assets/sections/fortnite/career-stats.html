@@ -3,22 +3,25 @@
 
             <script>
                 //const fnt = require('/Users/TheEWL/Desktop/BlastWebClient/assets/sections/fnAPI.js');
-                let fnt = require('/Users/kimki/Desktop/BlastWebClient/assets/sections/fnAPI.js');
+                let fnt = require('/Users/TheEWL/Desktop/BlastWebClient/assets/sections/fnAPI.js');
                 let careerStats = require('./assets/sections/tables')
 
-                //user = localStorage.getItem("loginUser")
-                user = "Ninja" // for testing purposes
-
-                fnt.getStats(user, "pc", (err, result) =>
+                user = localStorage.getItem("loginUser")
+                //user = "Ninja" // for testing purposes
+                function loadIt2()
                 {
-                    //console.log(result)
-                    if(err){
-                        console.log(err.message);
-                    }
-                    else{
-                        careerStats.displayCareerStats(result, "Fortnite-career-stats-section")
-                    }
-                });
+                    console.log("Checking fortnite career stats")
+                    fnt.getStats(user, "pc", (err, result) =>
+                    {
+                        //console.log(result)
+                        if(err){
+                            console.log(err.message);
+                        }
+                        else{
+                            careerStats.displayCareerStats(result, "Fortnite-career-stats-section")
+                        }
+                    });
+                }
             </script>
     </section>
 </template>

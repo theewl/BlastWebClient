@@ -8,7 +8,7 @@
                     'use strict';
                     const fs = require('fs');
                     // the path below will not work on your machine
-                    let files = fs.readdirSync('/Users/kimki/Desktop/BlastWebClient/Replays');
+                    let files = fs.readdirSync('/Users/TheEWL/Desktop/BlastWebClient/Replays');
 
                     console.log(files.length)
 
@@ -29,6 +29,8 @@
 
                     //Counter for data to be placed in html code
                     let iterate = 0;
+
+                    //Need to put # of replay files in database (8 files = 9 files)
 
                     files.forEach(fileName =>
                     {

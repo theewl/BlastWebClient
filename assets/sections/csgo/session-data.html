@@ -11,10 +11,11 @@
                 'use strict';
                 var id2 = 0
 
+
                 //PUT EACH REPLAY FILE INDIVIDUALLY INTO DATABASE
                 //CHECK FOR IDS, IF ID IS ALRAEDY IN DATABASE, DONT RUN. IF ID IS GREATER THAN IDS, THEN RUN AND ADD. 
                     
-                var jsgo = require('/Users/TheEWL/Desktop/BlastWebClient_v2/assets/sections/jsgo');
+                var jsgo = require('/Users/TheEWL/Desktop/BlastWebClient/assets/sections/jsgo');
 
                     //num of kills
                     var kills = 0;
@@ -42,14 +43,14 @@
                     //database numFile
                     var numFiles2
 
-                    const testFolder = '/Users/TheEWL/Desktop/BlastWebClient_v2/CSGO_Replays/';
+                    const testFolder = '/Users/TheEWL/Desktop/BlastWebClient/CSGO_Replays/';
                 function load1()
                 {
                     //Check to see current replay files
                     fs.readdir(testFolder, (err, files) => 
                     {
                       console.log("Num of replay files" + files.length)
-                      numFiles1 = files.length
+                      localStorage.setItem("CSGO_Local_Files", files.length);
 
 
                       //Give permission to update columns in database
@@ -71,15 +72,28 @@
                  {
                     if (err) throw err;
                     console.log("CSGO numFiles Checked")
-                    numFiles2 = result[0].numFiles
+                    localStorage.setItem("CSGO_DB_Files", result[0].numFiles);
+
                 });
-             });
-                }
+
+            });
+            }   
+                //Don't know why length in folder is 2 but says there are 3...
+                 numFiles1 = (localStorage.getItem("CSGO_Local_Files") - 1)
+                 numFiles2 = localStorage.getItem("CSGO_DB_Files")
+                 console.log("Num1" + numFiles1)
+                 console.log("Num2" + numFiles2)
+
                 function load2()
                 {
+                    
+                    console.log("Num1" + numFiles1)
+                    console.log("Num2" + numFiles2)
+
                     //Update database if new replay files were added, else just display tables 
                     if(numFiles1 != numFiles2)
                     {
+                      //ipc.sendSync('entry-accepted', 'ping3');
                       var sql3 = mysql.format("UPDATE new_table SET numFiles" + "='" + numFiles1 + "' WHERE id = 1")
 
                       // execute the insert statement
@@ -96,8 +110,10 @@
                     
                     fs.readdir(testFolder, (err, files) => 
                     {
-                      files.forEach(file => 
-                      {
+                      
+                      var file = files[files.length - 1]
+
+                      
                         var today = new Date();
                         var date = (today.getMonth()+1)+'-'+ today.getDate() +'-'+ today.getFullYear();
                         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -251,10 +267,22 @@
                                 winLose2 = "Tied"
                             }
 
+                            const query4 = "SELECT id FROM CSGO_stats"
+                            connection.query(query4, function (err, result, fields) 
+                            {
+                                if (err) throw err;
+
+                                for(var p = 0; p<result.length; p++ )
+                                {
+                                    if (result[p].id == id2)
+                                    {
+                                        id2++
+                                    }
+                                }
 
                           //Writes data to database
                           var sql2 = mysql.format("INSERT INTO CSGO_stats (kills,deaths,kd,headshots,wtl,id, timestamp) VALUES (?, ?, ?, ? ,?, ?, ?)", [kills, deaths, kd.toFixed(2), headshots, winLose2, id2, dateTime]);
-                          id2++;
+                          
                           // execute the insert statement
                           connection.query(sql2, function (err, result)
                           {
@@ -268,9 +296,10 @@
                           });
                       });
                     });
-
                             console.log("Ended");
-                    }); 
+                            //ipc.sendSync('entry-accepted', 'ping4');
+                            //ipc.sendSync('entry-accepted', 'ping');
+                    });
 
                 }
                 else
@@ -282,8 +311,6 @@
                         if (err) throw err;
                         console.log("CSGO querying...")
                         table.displaySessionData(result, fields, "CS:GO-session-data-section")
-
-                        //connection2.end();
 
                     });
                 }
@@ -298,16 +325,18 @@
     function timedCount() 
     {
         load1()
+        loadIt()
+        loadIt2()
         //If new replay file was added, run the function
         if(numFiles1 != numFiles2)
         {
-            load2()
+            //load2()
         }
-        console.log("EGE")
-        t = setTimeout(timedCount, 10000);
+        t = setTimeout(timedCount, 60000);
     }
 
-    function startCount() {
+    function startCount() 
+    {
       if (!timer_is_on) 
       {
         timer_is_on = 1;

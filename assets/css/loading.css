@@ -9,7 +9,7 @@ body{
 .loginbox{
     width:420px;
     height:420px;
-    background-image: url(../images/loading.jpg);
+    background-image: url(../images/loading.gif);
     color:#fff;
     top:50%;
     left:50%;

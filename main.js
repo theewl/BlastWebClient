@@ -85,7 +85,15 @@ function createWindows() {
         protocol:'file',
         slashes:true
     }))
+/*
+    child2 =new BrowserWindow({minHeight:900, minWidth:900, webPreferences: {nodeIntegration: true}, icon:"assets/images/icon.ico", show: false})
 
+    child2.loadURL(url.format({
+        pathname:path.join(__dirname,'loading.html'),
+        protocol:'file',
+        slashes:true
+    }))
+*/
     // child.openDevTools()
 }
 
@@ -102,6 +110,16 @@ ipcMain.on('entry-accepted', (event, arg) => {
         child.reload()
         child.show()
     }
+    /*
+    if(arg == 'ping3')
+    {
+        child2.show()
+    }
+    if(arg == 'ping4')
+    {
+        child2.hide()
+    }
+    */
   })
 
 app.on('ready',createWindows)
