@@ -283,7 +283,7 @@ p{
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
     p{
-        font-size:4.6px;
+        font-size:5px;
     }
     .data{
         font-size:8px;
@@ -293,7 +293,7 @@ p{
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {  
     p{
-        font-size:10.6px;
+        font-size:9.3px;
     }
     .data{
         font-size:12px;
