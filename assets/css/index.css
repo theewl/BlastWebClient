@@ -2,14 +2,33 @@
     font-family: Roboto;
 }
 
+/* body *{
+    border: 1px solid lightblue;
+} */
+
 body {
-    background-image: url('../images/background.png');
-    background-position: center center;
+   background: url('../images/background.png');
     background-repeat:  no-repeat;
+    background-blend-mode:screen;
     background-attachment: fixed;
-    background-size:  cover;
+    background-size: cover;
+    position: relative;
+    background-position: center ;
   
 }
+
+
+.layer{
+    background-color: #181543;
+    background-blend-mode:screen;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 130%;
+    height: 150%;
+    opacity: 0.6;
+}
+
 
 .button-logout {
     background-color: transparent;
@@ -44,6 +63,7 @@ body {
 
 .card-row-header {
     color: #a29de2;
+    opacity:0.9;
     padding-top: 190px;
     font-size: 16px;
     font-weight:bold;
@@ -68,7 +88,7 @@ body {
 
 .sidenav {
     height: 100%;
-    width: 150px;
+    width: 160px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -110,8 +130,8 @@ body {
 .topnav {
     position: fixed;
     z-index: 1;
-    height: 15%;
-    width: 1400px;
+    height: 130px;
+    width: 91%;
     margin-left: 150px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px;
@@ -223,7 +243,7 @@ th {
 p{
  color: #a29de2;
  font-weight: bold;
- font-size:12px;
+ /* font-size:16px; */
  font-family: roboto;
 
 }
@@ -239,8 +259,61 @@ p{
 
 }
 
-@media screen and (max-height: 450px) {
+
+
+@media (min-width: 576px) {  
+    p{
+        font-size:3px;
+    }
+    .data{
+        font-size:5px;
+    }
+}
+ 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {  
+    p{
+        font-size:4px;
+    }
+    .data{
+        font-size:5px;
+    }
+}
+ 
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    p{
+        font-size:4.6px;
+    }
+    .data{
+        font-size:8px;
+    }
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+    p{
+        font-size:10.6px;
+    }
+    .data{
+        font-size:12px;
+    }
+}
+
+@media (min-width: 1400px) {  
+    p{
+        font-size:12.2px;
+    }
+    .data{
+        font-size:20px;
+    }
+}
+
+/* @media screen and (max-width: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
     
-}
+} */
+
+ 
+

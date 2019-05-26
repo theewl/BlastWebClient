@@ -75,7 +75,7 @@
 
                       //console.log("connected")
 
-                      const query = "SELECT place, assists, revives, accuracy, eliminations, damage_taken, id, timestamp FROM stats"
+                      const query = "SELECT PLACE, ASSISTS, REVIVES, ACCURACY, ELIMINATIONS, DAMAGE_TAKEN, ID, TIMESTAMP FROM stats"
 
                       connection.query(query, function (err, result, fields) {
                           if (err) throw err;

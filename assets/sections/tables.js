@@ -9,7 +9,7 @@ module.exports =
             let container, row1, col1, row2
 
             for (var i = 0; i < result.length; i++) {
-                let timestamp = result[i]['timestamp'].split(" ")
+                let timestamp = result[i]['TIMESTAMP'].split(" ")
                 let date = timestamp[0]
                 let time = timestamp[1]
 
@@ -32,7 +32,7 @@ module.exports =
 
                     row1 = createDiv("row")
                     col1 = createDiv("col-md-12")
-                    row2 = createDiv("row flex-row flex-nowrap")
+                    row2 = createDiv("row flex-nowrap")
 
                     //------------------------------------->
 
