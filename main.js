@@ -68,7 +68,8 @@ const url=require('url')
 let win
 let child
 
-function createWindows() {
+function createWindows() 
+{
 
     win =new BrowserWindow({minHeight:900, minWidth:900, webPreferences: {nodeIntegration: true}, icon:"assets/images/icon.ico", show: false})
 
@@ -85,15 +86,15 @@ function createWindows() {
         protocol:'file',
         slashes:true
     }))
-/*
-    child2 =new BrowserWindow({minHeight:900, minWidth:900, webPreferences: {nodeIntegration: true}, icon:"assets/images/icon.ico", show: false})
+
+    child2 = new BrowserWindow({width:200,height:200, webPreferences: {nodeIntegration: true}, show: false})
 
     child2.loadURL(url.format({
         pathname:path.join(__dirname,'loading.html'),
         protocol:'file',
         slashes:true
     }))
-*/
+
     // child.openDevTools()
 }
 
@@ -110,16 +111,24 @@ ipcMain.on('entry-accepted', (event, arg) => {
         child.reload()
         child.show()
     }
-    /*
+    
     if(arg == 'ping3')
     {
-        child2.show()
+        win.destroy()
+        child.destroy()
+        createWindows()
+        win.show()
+        win.maximize()
+        child.hide()
+        child2.hide()
+
     }
     if(arg == 'ping4')
     {
-        child2.hide()
+        child2.show()
     }
-    */
+
+    
   })
 
 app.on('ready',createWindows)

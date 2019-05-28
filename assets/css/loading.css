@@ -1,14 +1,15 @@
-body{
+/*body{
     margin:0;
     padding:0;
     background-image:url(../images/ninja.jpg);
     background-size: cover;
     background-position: center;
 }
+*/
 
 .loginbox{
-    width:420px;
-    height:420px;
+    width:220px;
+    height:220px;
     background-image: url(../images/loading.gif);
     color:#fff;
     top:50%;

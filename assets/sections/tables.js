@@ -13,8 +13,8 @@ module.exports =
                 let date = timestamp[0]
                 let time = timestamp[1]
 
-                console.log(date)
-                console.log(time)
+                //console.log(date)
+                //console.log(time)
 
                 if(date != currentDate) // new row
                 {
