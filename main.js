@@ -95,6 +95,11 @@ function createWindows()
         slashes:true
     }))
 
+    //So program doesn't crash
+    child3 = new BrowserWindow({width:200,height:200, webPreferences: {nodeIntegration: true}, show: false})
+
+
+
     // child.openDevTools()
 }
 
