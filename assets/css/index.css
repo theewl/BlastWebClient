@@ -17,15 +17,6 @@ body {
   
 }
 
-.refresh{
-    background-color: white;
-    border:none;
-    border-radius:50px;
-    width:55px;
-    height:55px;
-    margin-top:30px;
-}
-
 
 .layer{
     background-color: #181543;
@@ -33,7 +24,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 190%;
+    width: 130%;
     height: 150%;
     opacity: 0.6;
 }
