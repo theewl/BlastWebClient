@@ -4,7 +4,7 @@ import sys
 #print(sys.argv[1])
 
 # ideally we will pass the entire path via parameter
-with Reader("/Users/TheEWL/Desktop/BlastWebClient/Replays" + "/" + sys.argv[1]) as replay:
+with Reader("../AppData/Local/FortniteGame/Saved/Demos" + "/" + sys.argv[1]) as replay:
     print(replay.stats['eliminations'])
     print(replay.stats['assists'])
     print(replay.stats['revives'])
