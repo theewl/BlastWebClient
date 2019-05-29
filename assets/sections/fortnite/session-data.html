@@ -53,6 +53,68 @@
 
                     //Need to put # of replay files in database (8 files = 9 files)
 
+                        function FNload1()
+                        {
+                            //Check to see current replay files
+                            fs.readdir(newPath + 'AppData/Local/FortniteGame/Saved/Demos', (err, files) => 
+                            {
+                              console.log("Num of replay files" + files.length)
+                              localStorage.setItem("FN_Local_Files", files.length);
+
+
+                              //Give permission to update columns in database
+                          var sql_SAFE = "SET SQL_SAFE_UPDATES = 0"
+                          connection.query(sql_SAFE, function (err, result)
+                          {
+                              if(err)
+                              {
+                                  console.log("An error ocurred performing the query.");
+                                  console.log(err);
+                                  return;
+                              }
+                              console.log("CSGO SAFE Query succesfully executed");
+                          });
+
+                          //Checks numFiles that is in database
+                         const query2 = "SELECT numFiles FROM new_table2"
+                         connection.query(query2, function (err, result, fields) 
+                         {
+                            if (err) throw err;
+                            console.log("Fortnite numFiles Checked")
+                            localStorage.setItem("FN_DB_Files", result[0].numFiles);
+
+                        });
+
+                    });
+                         //Don't know why length in folder is 2 but says there are 3...
+                         FNnumFiles1 = (localStorage.getItem("FN_Local_Files"))
+                         FNnumFiles2 = localStorage.getItem("FN_DB_Files")
+
+
+                    }
+
+                  function FNload2()
+                  {
+                    console.log("NUMBER OF FILESSS:" + FNnumFiles1)
+
+                    //Update database if new replay files were added, else just display tables 
+                    if(FNnumFiles1 != FNnumFiles2)
+                    {
+                      //ipc.send('entry-accepted', 'ping4');
+                      var sql3 = mysql.format("UPDATE new_table2 SET numFiles" + "='" + FNnumFiles1 + "' WHERE id = 1")
+
+                      // execute the insert statement
+                      connection.query(sql3, function (err, result)
+                      {
+                          if(err)
+                          {
+                              console.log("An error ocurred performing the query.");
+                              console.log(err);
+                              return;
+                          }
+                          console.log("CSGO UPDATE Query succesfully executed");
+                      });
+
                     files.forEach(fileName =>
                     {
                         let {PythonShell} = require('python-shell')
@@ -86,10 +148,13 @@
                                   return;
                               }
                               console.log("Fortnite INSERT Query succesfully executed");
+                              ipc.sendSync('entry-accepted', 'ping3');
                           });
                       });
                     });
-
+                  }
+                  else
+                  {
                   //Put data from database into tables
                   connection.connect(function(err)
                   {
@@ -107,7 +172,11 @@
 
                       });
                     });
-
+                }
+              }
+              
+              FNload1()
+              FNload2()
 
         </script>
     </section>

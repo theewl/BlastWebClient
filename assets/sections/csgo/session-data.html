@@ -316,6 +316,7 @@
     var t;
     var timer_is_on = 0;
     var checker = 0;
+    var checker2 = 0
 
     //Optional Refresh button
     function reloadTables()
@@ -325,7 +326,9 @@
 
     function timedCount() 
     {
+        //load csgo session data
         load1()
+        //load fortnite and csgo career data
         loadIt()
         loadIt2()
         //If new replay file was added, run the function
@@ -337,12 +340,27 @@
         checker = 1
     }
 
+    function timedCount2()
+    {        
+        //load fortnite session data
+        FNload1()
+        //If new replay file was added, run the function
+        if((FNnumFiles1 != FNnumFiles2) && (checker2 == 1))
+        {
+            FNload2()
+        }
+        t = setTimeout(timedCount2, 60000);
+        checker2 = 1
+        
+    }
+
     function startCount() 
     {
       if (!timer_is_on) 
       {
         timer_is_on = 1;
         timedCount();
+        timedCount2()
       }
     }
 
