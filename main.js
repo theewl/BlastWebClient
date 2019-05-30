@@ -68,7 +68,7 @@ const url=require('url')
 let win
 let child
 
-function createWindows() 
+function createWindows()
 {
 
     win =new BrowserWindow({minHeight:900, minWidth:900, webPreferences: {nodeIntegration: true}, icon:"assets/images/icon.ico", show: false})
@@ -116,11 +116,12 @@ ipcMain.on('entry-accepted', (event, arg) => {
         child.reload()
         child.show()
     }
-    
+
     if(arg == 'ping3')
     {
         win.destroy()
         child.destroy()
+        child2.destroy()
         createWindows()
         win.show()
         win.maximize()
@@ -133,7 +134,7 @@ ipcMain.on('entry-accepted', (event, arg) => {
         child2.show()
     }
 
-    
+
   })
 
 app.on('ready',createWindows)
