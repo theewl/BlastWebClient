@@ -16,6 +16,8 @@
 
                 var jsgo = require('../BlastWebClient/assets/sections/jsgo.js');
 
+                    //Check if loggedIn
+                    var loggedIn = 0
                     //num of kills
                     var kills = 0;
                     //num of headshots
@@ -78,6 +80,12 @@
                     //Don't know why length in folder is 2 but says there are 3...
                  numFiles1 = (localStorage.getItem("CSGO_Local_Files"))
                  numFiles2 = localStorage.getItem("CSGO_DB_Files")
+                 if(numFiles1 <= 0)
+                 {
+                    alert("Play a game of CSGO OR download replay files on steam!")
+                 }
+
+                 
                 }
                 function load2()
                 {
@@ -125,7 +133,7 @@
                                 for ( var i = 0; i < 20; i++)
                                 {
                                     //Find username in replay file
-                                    if (player[i].getName() == "dennis")
+                                    if (player[i].getName() == user)
                                     {
                                         currentPlayer = player[i].getName();
                                         currentPos = i;
@@ -220,7 +228,7 @@
                                     //console.log(e.player.getName());
 
                                     //If player's name is displayed, iterate death by 1
-                                    if(e.player.getName() == 'dennis')
+                                    if(e.player.getName() == user)
                                     {
                                         deaths++;
                                     }
@@ -305,8 +313,11 @@
 
                 }
             }
+if(loggedIn == 1)
+{
     load1()
     load2()
+}
     //Rerun load function every minute
     var c = 0;
     var t;
@@ -359,8 +370,10 @@
         timedCount2()
       }
     }
-
-startCount();
+if(loggedIn == 1)
+{ 
+    startCount();
+}
                 </script>
 
         </header>
