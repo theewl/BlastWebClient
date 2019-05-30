@@ -11,11 +11,10 @@
                 'use strict';
                 var id2 = 0
 
-
                 //PUT EACH REPLAY FILE INDIVIDUALLY INTO DATABASE
                 //CHECK FOR IDS, IF ID IS ALRAEDY IN DATABASE, DONT RUN. IF ID IS GREATER THAN IDS, THEN RUN AND ADD. 
                     
-                var jsgo = require('../BlastWebClient/assets/sections/jsgo');
+                var jsgo = require('../BlastWebClient/assets/sections/jsgo.js');
 
                     //num of kills
                     var kills = 0;
@@ -43,7 +42,7 @@
                     //database numFile
                     var numFiles2
 
-                    const testFolder = newPath + 'Steam\\steamapps\\common\\Counter-Strike Global Offensive\\csgo\\replays'
+                    const testFolder = 'C:\\Program Files (x86)\\Steam\\steamapps\\common\\Counter-Strike Global Offensive\\csgo\\replays';
                 function load1()
                 {
                     //Check to see current replay files
@@ -51,6 +50,7 @@
                     {
                       console.log("Num of replay files" + files.length)
                       localStorage.setItem("CSGO_Local_Files", files.length);
+                      
 
 
                       //Give permission to update columns in database
@@ -73,21 +73,14 @@
                     if (err) throw err;
                     console.log("CSGO numFiles Checked")
                     localStorage.setItem("CSGO_DB_Files", result[0].numFiles);
-
                 });
-
-            });
-                 //Don't know why length in folder is 2 but says there are 3...
-                 numFiles1 = (localStorage.getItem("CSGO_Local_Files") - 1)
+             });
+                    //Don't know why length in folder is 2 but says there are 3...
+                 numFiles1 = (localStorage.getItem("CSGO_Local_Files"))
                  numFiles2 = localStorage.getItem("CSGO_DB_Files")
-
-
-            }   
-
-
+                }
                 function load2()
                 {
-
                     //Update database if new replay files were added, else just display tables 
                     if(numFiles1 != numFiles2)
                     {
@@ -108,10 +101,7 @@
                     
                     fs.readdir(testFolder, (err, files) => 
                     {
-                      
-                      var file = files[files.length - 1]
-
-                      
+                        var file = files[files.length - 1]
                         var today = new Date();
                         var date = (today.getMonth()+1)+'-'+ today.getDate() +'-'+ today.getFullYear();
                         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -135,7 +125,7 @@
                                 for ( var i = 0; i < 20; i++)
                                 {
                                     //Find username in replay file
-                                    if (player[i].getName() == user)
+                                    if (player[i].getName() == "dennis")
                                     {
                                         currentPlayer = player[i].getName();
                                         currentPos = i;
@@ -230,7 +220,7 @@
                                     //console.log(e.player.getName());
 
                                     //If player's name is displayed, iterate death by 1
-                                    if(e.player.getName() == user)
+                                    if(e.player.getName() == 'dennis')
                                     {
                                         deaths++;
                                     }
@@ -269,7 +259,6 @@
                             connection.query(query4, function (err, result, fields) 
                             {
                                 if (err) throw err;
-
                                 for(var p = 0; p<result.length; p++ )
                                 {
                                     if (result[p].id == id2)
@@ -294,11 +283,15 @@
                               ipc.sendSync('entry-accepted', 'ping3');
                           });
                       });
-                    });      
-                });
-            }
+                    });
+
+                            console.log("Ended");
+                    
+                    });
+                }
                 else
                 {
+
                     const query2 = "SELECT kills, deaths, kd, headshots, wtl, TIMESTAMP FROM CSGO_stats"
                     connection.query(query2, function (err, result, fields) 
                     {
@@ -306,7 +299,10 @@
                         console.log("CSGO querying...")
                         table.displaySessionData(result, fields, "CS:GO-session-data-section")
 
+                        //connection2.end();
+
                     });
+
                 }
             }
     load1()
