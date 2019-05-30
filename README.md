@@ -1,5 +1,10 @@
 # BlastWebClient
 NEED TO DO:
-  - STILL need to get id for our csgo account for demo
-  - Check if path works for CSGO
-  - NOTE: The login name should be the same as the username for both CSGO and fortnite, so we can get their data
+ - Create a new fortnite and csgo account. (So we can get their career stats when we demo)
+ - Change directories.
+  - Relative path to a computer's replay files
+ - Test CSGO and Fortnite to see if data is accurate. 
+ - Display timestamp on top of table and not in the table.
+ - Fix Alex's change requests
+ - Fix table positions (Not vertical)
+ - Make sure the # of replay files in the paths are accurate.
