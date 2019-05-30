@@ -2,7 +2,7 @@
 
 <template class="task-template">
     <section id="CS:GO-session-data-section" class="section js-section u-category-session-data">
-        
+
             <script type="text/javascript">
                 // eventually we're going to want to connect to database in a seperate
                 // js file so we can avoid code duplication
@@ -12,8 +12,8 @@
                 var id2 = 0
 
                 //PUT EACH REPLAY FILE INDIVIDUALLY INTO DATABASE
-                //CHECK FOR IDS, IF ID IS ALRAEDY IN DATABASE, DONT RUN. IF ID IS GREATER THAN IDS, THEN RUN AND ADD. 
-                    
+                //CHECK FOR IDS, IF ID IS ALRAEDY IN DATABASE, DONT RUN. IF ID IS GREATER THAN IDS, THEN RUN AND ADD.
+
                 var jsgo = require('../BlastWebClient/assets/sections/jsgo.js');
 
                     //num of kills
@@ -42,15 +42,15 @@
                     //database numFile
                     var numFiles2
 
-                    const testFolder = 'C:\\Program Files (x86)\\Steam\\steamapps\\common\\Counter-Strike Global Offensive\\csgo\\replays';
+                    const testFolder = 'C:\\Program Files (x86)\\Steam\\steamapps\\common\\Counter-Strike Global Offensive\\csgo\\replays\\';
                 function load1()
                 {
                     //Check to see current replay files
-                    fs.readdir(testFolder, (err, files) => 
+                    fs.readdir(testFolder, (err, files) =>
                     {
                       console.log("Num of replay files" + files.length)
                       localStorage.setItem("CSGO_Local_Files", files.length);
-                      
+
 
 
                       //Give permission to update columns in database
@@ -68,7 +68,7 @@
 
                   //Checks numFiles that is in database
                  const query2 = "SELECT numFiles FROM new_table"
-                 connection.query(query2, function (err, result, fields) 
+                 connection.query(query2, function (err, result, fields)
                  {
                     if (err) throw err;
                     console.log("CSGO numFiles Checked")
@@ -81,7 +81,7 @@
                 }
                 function load2()
                 {
-                    //Update database if new replay files were added, else just display tables 
+                    //Update database if new replay files were added, else just display tables
                     if(numFiles1 != numFiles2)
                     {
                       ipc.send('entry-accepted', 'ping4');
@@ -98,8 +98,8 @@
                           }
                           console.log("CSGO UPDATE Query succesfully executed");
                       });
-                    
-                    fs.readdir(testFolder, (err, files) => 
+
+                    fs.readdir(testFolder, (err, files) =>
                     {
                         var file = files[files.length - 1]
                         var today = new Date();
@@ -112,9 +112,9 @@
                             var myDemo = new jsgo.Demo().
 
                             //Checks event of each round
-                            on('game.round_officially_ended', function(event) 
+                            on('game.round_officially_ended', function(event)
                             {
-                                //Get teams 
+                                //Get teams
                                 var teams = this.getTeams();
                                 //Get players
                                 var player = this.getPlayers();
@@ -130,7 +130,7 @@
                                         currentPlayer = player[i].getName();
                                         currentPos = i;
                                         break;
-                                        
+
                                     }
                                 }
 
@@ -155,7 +155,7 @@
                                 var teams = this.getTeams();
 
                                 //Keeps track of score after each round
-                                for (var i = 0; i < teams.length; i++) 
+                                for (var i = 0; i < teams.length; i++)
                                 {
 
                                     var team = teams[i];
@@ -174,7 +174,7 @@
                                     //Iterate round
                                     previousRound += team.getScore();
 
-                                    
+
                                 }
                                 //To display scores/round
                                 //console.log('TERRORIST' + " " + tSide);
@@ -213,7 +213,7 @@
                             }).
 
                             //Checks event of each death
-                            on('game.player_death', function(e) 
+                            on('game.player_death', function(e)
                             {
                                 if (e.player != undefined)
                                 {
@@ -225,7 +225,7 @@
                                         deaths++;
                                     }
                                 }
-                                
+
                                 //Deaths
                                 //console.log("Deaths: " + deaths);
 
@@ -256,7 +256,7 @@
                             }
 
                             const query4 = "SELECT id FROM CSGO_stats"
-                            connection.query(query4, function (err, result, fields) 
+                            connection.query(query4, function (err, result, fields)
                             {
                                 if (err) throw err;
                                 for(var p = 0; p<result.length; p++ )
@@ -269,7 +269,7 @@
 
                           //Writes data to database
                           var sql2 = mysql.format("INSERT INTO CSGO_stats (kills,deaths,kd,headshots,wtl,id, TIMESTAMP) VALUES (?, ?, ?, ? ,?, ?, ?)", [kills, deaths, kd.toFixed(2), headshots, winLose2, id2, dateTime]);
-                          
+
                           // execute the insert statement
                           connection.query(sql2, function (err, result)
                           {
@@ -286,14 +286,14 @@
                     });
 
                             console.log("Ended");
-                    
+
                     });
                 }
                 else
                 {
 
                     const query2 = "SELECT kills, deaths, kd, headshots, wtl, TIMESTAMP FROM CSGO_stats"
-                    connection.query(query2, function (err, result, fields) 
+                    connection.query(query2, function (err, result, fields)
                     {
                         if (err) throw err;
                         console.log("CSGO querying...")
@@ -320,7 +320,7 @@
         ipc.sendSync('entry-accepted', 'ping3');
     }
 
-    function timedCount() 
+    function timedCount()
     {
         //load csgo session data
         load1()
@@ -337,7 +337,7 @@
     }
 
     function timedCount2()
-    {        
+    {
         //load fortnite session data
         FNload1()
         //If new replay file was added, run the function
@@ -347,12 +347,12 @@
         }
         t = setTimeout(timedCount2, 60000);
         checker2 = 1
-        
+
     }
 
-    function startCount() 
+    function startCount()
     {
-      if (!timer_is_on) 
+      if (!timer_is_on)
       {
         timer_is_on = 1;
         timedCount();
