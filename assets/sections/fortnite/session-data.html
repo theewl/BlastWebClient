@@ -56,7 +56,7 @@
                         function FNload1()
                         {
                             //Check to see current replay files
-                            fs.readdir(newPath + 'AppData/Local/FortniteGame/Saved/Demos', (err, files) =>
+                            fs.readdir(newPath + 'AppData\\Local\\FortniteGame\\Saved\\Demos', (err, files) =>
                             {
                               console.log("Num of replay files" + files.length)
                               localStorage.setItem("FN_Local_Files", files.length);

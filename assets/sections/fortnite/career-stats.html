@@ -3,7 +3,26 @@
 
             <script>
                 //const fnt = require('/Users/TheEWL/Desktop/BlastWebClient/assets/sections/fnAPI.js');
-                let fnt = require('../BlastWebClient/assets/sections/fnAPI.js');
+                var path = __dirname
+                var dashChecker = 0
+                var newPath
+                //console.log(path)
+
+                for(var x = 0; x < path.length; x++)
+                {
+                    if (path.charAt(x) == '\\')
+                    {
+                        dashChecker++
+                    }
+                    if(path.charAt(x) == '\\' && dashChecker == 3)
+                    {
+                        newPath = path.substring(0, x+1)
+                    }
+                }
+
+                console.log(newPath)
+
+                let fnt = require(newPath + 'Desktop\\blastwebclient-win32-x64\\resources\\app\\assets\\sections\\fnAPI.js');
                 let careerStats = require('./assets/sections/tables')
 
                 user = localStorage.getItem("loginUser")
