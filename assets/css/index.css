@@ -17,6 +17,25 @@ body {
   
 }
 
+#steamId
+{
+    color:hsl(244, 48%, 81%);
+    font-weight: bold;
+    font-size:17px;
+    font-family: roboto;
+    margin-bottom:12px;
+}
+
+
+.submitId{
+    background-color: #f0a638ea;
+    /* background-color: rebeccapurple; */
+    border:none;
+    color:white;
+    font-weight: bold;
+    font-family: roboto;
+}
+
 .refresh{
     background-color: white;
     border:none;
@@ -34,7 +53,7 @@ body {
     top: 0;
     left: 0;
     width: 190%;
-    height: 150%;
+    height: 160%;
     opacity: 0.6;
 }
 
@@ -277,6 +296,17 @@ p{
     .data{
         font-size:5px;
     }
+    .submitId{
+        
+        font-size:18px;
+        margin-left:50px;
+        width:45px;
+        height:18px;
+    }
+    #sid{
+        width:100px;
+        font-size:8px;
+    }
 }
  
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -286,6 +316,15 @@ p{
     }
     .data{
         font-size:5px;
+    }
+    .submitId{
+        font-size:8px;
+        margin-left:35px;
+    }
+    #sid{
+        width:100px;
+        font-size:8px;
+        margin-bottom:30px;
     }
 }
  
@@ -297,6 +336,7 @@ p{
     .data{
         font-size:8px;
     }
+   
 }
  
 /* Extra large devices (large desktops, 1200px and up) */
@@ -307,6 +347,7 @@ p{
     .data{
         font-size:12px;
     }
+   
 }
 
 @media (min-width: 1400px) {  
@@ -316,6 +357,19 @@ p{
     .data{
         font-size:20px;
     }
+    .submitId{
+        
+        font-size:14px;
+        margin-left:50px;
+        width:90px;
+        height:30px;
+    }
+    #sid{
+        margin-bottom: 55px;
+        width:168px;
+        font-size:15px;
+    }
+    
 }
 
 /* @media screen and (max-width: 450px) {
