@@ -17,11 +17,11 @@
 
                     for(var x = 0; x < path.length; x++)
                     {
-                        if (path.charAt(x) == '/')
+                        if (path.charAt(x) == '\\')
                         {
                             dashChecker++
                         }
-                        if(path.charAt(x) == '/' && dashChecker == 3)
+                        if(path.charAt(x) == '\\' && dashChecker == 3)
                         {
                             newPath = path.substring(0, x+1)
                         }
@@ -132,7 +132,7 @@
                         var dateTime = date +' '+ time;
                         console.log(dateTime)
 
-                        PythonShell.run(newPath + 'Desktop\\blastwebclient-win32-x64\\resources\\app\\ForniteAPI\\src\\Main.py', options, function  (err, results)
+                        PythonShell.run(newPath + 'Desktop\\blastwebclient-win32-x64\\resources\\app\\FortniteAPI\\src\\Main.py', options, function  (err, results)
                         {
                             if  (err)  throw err;
 
