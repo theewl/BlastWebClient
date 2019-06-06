@@ -65,7 +65,7 @@ body {
 
 .card-header p {
     color: white;
-    font-size: 13px;
+    font-size: 20px;
     text-align: right;
 
 }
@@ -311,7 +311,7 @@ p{
 
 @media (min-width: 1400px) {  
     p{
-        font-size:12.2px;
+        font-size:13px;
     }
     .data{
         font-size:20px;

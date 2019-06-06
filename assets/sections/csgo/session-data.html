@@ -292,7 +292,7 @@
                 else
                 {
 
-                    const query2 = "SELECT kills, deaths, kd, headshots, wtl, TIMESTAMP FROM CSGO_stats"
+                    const query2 = "SELECT KILLS, DEATHS, KD, HEADSHOTS, WTL, TIMESTAMP FROM CSGO_stats"
                     connection.query(query2, function (err, result, fields) 
                     {
                         if (err) throw err;
