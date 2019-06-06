@@ -1,6 +1,7 @@
 <template class="task-template">
     <section id="Fortnite-session-data-section" class="section js-section u-category-session-data">
         <script type="text/javascript">
+          
             // eventually we're going to want to connect to database in a seperate
             // js file so we can avoid code duplication
             let table = require('./assets/sections/tables')
@@ -16,11 +17,11 @@
 
                     for(var x = 0; x < path.length; x++)
                     {
-                        if (path.charAt(x) == '\\')
+                        if (path.charAt(x) == '/')
                         {
                             dashChecker++
                         }
-                        if(path.charAt(x) == '\\' && dashChecker == 3)
+                        if(path.charAt(x) == '/' && dashChecker == 3)
                         {
                             newPath = path.substring(0, x+1)
                         }
@@ -77,7 +78,7 @@
 
                           //Checks numFiles that is in database
                          const query2 = "SELECT numFiles FROM new_table2"
-                         connection.query(query2, function (err, result, fields)
+                         connection.query(query2, function (err, result, fields) 
                          {
                             if (err) throw err;
                             console.log("Fortnite numFiles Checked")
@@ -97,7 +98,7 @@
                   {
                     console.log("NUMBER OF FILESSS:" + FNnumFiles1)
 
-                    //Update database if new replay files were added, else just display tables
+                    //Update database if new replay files were added, else just display tables 
                     if(FNnumFiles1 != FNnumFiles2)
                     {
                       //ipc.send('entry-accepted', 'ping4');
@@ -131,7 +132,7 @@
                         var dateTime = date +' '+ time;
                         console.log(dateTime)
 
-                        PythonShell.run(newPath + 'Desktop\\blastwebclient-win32-x64\\resources\\app\\FortniteAPI\\src\\Main.py', options, function  (err, results)
+                        PythonShell.run(newPath + 'Desktop\\blastwebclient-win32-x64\\resources\\app\\ForniteAPI\\src\\Main.py', options, function  (err, results)
                         {
                             if  (err)  throw err;
 
@@ -148,10 +149,11 @@
                                   return;
                               }
                               console.log("Fortnite INSERT Query succesfully executed");
-                              ipc.sendSync('entry-accepted', 'ping3');
+                              
                           });
                       });
                     });
+
                   }
                   else
                   {
@@ -174,7 +176,7 @@
                     });
                 }
               }
-
+              
               FNload1()
               FNload2()
 
