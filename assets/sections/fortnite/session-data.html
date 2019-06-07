@@ -30,7 +30,7 @@
                     console.log(newPath)
 
 
-                    let files = fs.readdirSync(newPath + 'AppData\\Local\\FortniteGame\\Saved\\Demos');
+                    let files = fs.readdirSync('/Users/TheEWL/Desktop/BlastWebClient/Replays');
 
                     console.log(files.length)
 
@@ -57,7 +57,7 @@
                         function FNload1()
                         {
                             //Check to see current replay files
-                            fs.readdir(newPath + 'AppData\\Local\\FortniteGame\\Saved\\Demos', (err, files) =>
+                            fs.readdir(newPath + '/Users/TheEWL/Desktop/BlastWebClient/Replays', (err, files) =>
                             {
                               console.log("Num of replay files" + files.length)
                               localStorage.setItem("FN_Local_Files", files.length);
@@ -164,7 +164,7 @@
 
                       //console.log("connected")
 
-                      const query = "SELECT PLACE, ASSISTS, REVIVES, ACCURACY, ELIMINATIONS, DAMAGE_TAKEN, ID, TIMESTAMP FROM stats"
+                      const query = "SELECT PLACE, ASSISTS, REVIVES, ACCURACY, ELIMINATIONS, DAMAGE_TAKEN, ID, TIMESTAMP FROM stats ORDER BY TIMESTAMP DESC"
 
                       connection.query(query, function (err, result, fields) {
                           if (err) throw err;
