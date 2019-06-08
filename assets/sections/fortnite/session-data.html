@@ -126,11 +126,18 @@
 
                         let fields = ["eliminations", "assists", "revives", "accuracy", "damage taken", "place"]
 
-                        var today = new Date();
-                        var date = (today.getMonth()+1)+'-'+ today.getDate() +'-'+ today.getFullYear();
-                        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                        var fn_month = fs.statSync(newPath + 'AppData\\Local\\FortniteGame\\Saved\\Demos\\' + fileName).mtime.getMonth()
+                        var fn_day = fs.statSync(newPath + 'AppData\\Local\\FortniteGame\\Saved\\Demos\\' + fileName).mtime.getDate()
+                        var fn_year = fs.statSync(newPath + 'AppData\\Local\\FortniteGame\\Saved\\Demos\\' + fileName).mtime.getFullYear()
+                        var fn_hours = fs.statSync(newPath + 'AppData\\Local\\FortniteGame\\Saved\\Demos\\' + fileName).mtime.getHours()
+                        var fn_mins = fs.statSync(newPath + 'AppData\\Local\\FortniteGame\\Saved\\Demos\\' + fileName).mtime.getMinutes()
+                        var fn_secs = fs.statSync(newPath + 'AppData\\Local\\FortniteGame\\Saved\\Demos\\' + fileName).mtime.getSeconds()
+
+
+                        var date = ((fn_month+1) +'-'+ fn_day +'-'+ fn_year);
+                        var time = fn_hours + ":" + fn_mins + ":" + fn_secs;
                         var dateTime = date +' '+ time;
-                        console.log(dateTime)
+                        //console.log(dateTime)
 
                         PythonShell.run(newPath + 'Desktop\\blastwebclient-win32-x64\\resources\\app\\ForniteAPI\\src\\Main.py', options, function  (err, results)
                         {

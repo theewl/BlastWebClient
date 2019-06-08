@@ -110,10 +110,19 @@
                     fs.readdir(testFolder, (err, files) =>
                     {
                         var file = files[files.length - 1]
-                        var today = new Date();
-                        var date = (today.getMonth()+1)+'-'+ today.getDate() +'-'+ today.getFullYear();
-                        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+                        var csgo_month = fs.statSync(testFolder + file).mtime.getMonth()
+                        var csgo_day = fs.statSync(testFolder + file).mtime.getDate()
+                        var csgo_year = fs.statSync(testFolder + file).mtime.getFullYear()
+                        var csgo_hours = fs.statSync(testFolder + file).mtime.getHours()
+                        var csgo_mins = fs.statSync(testFolder + file).mtime.getMinutes()
+                        var csgo_secs = fs.statSync(testFolder + file).mtime.getSeconds()
+
+
+                        var date = ((csgo_month+1) +'-'+ csgo_day +'-'+ csgo_year);
+                        var time = csgo_hours + ":" + csgo_mins + ":" + csgo_secs;
                         var dateTime = date +' '+ time;
+                        //console.log(dateTime)
 
                         fs.readFile(testFolder + file, function(err,data)
                         {
