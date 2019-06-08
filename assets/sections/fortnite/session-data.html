@@ -133,6 +133,109 @@
                         var fn_mins = fs.statSync(newPath + 'AppData\\Local\\FortniteGame\\Saved\\Demos\\' + fileName).mtime.getMinutes()
                         var fn_secs = fs.statSync(newPath + 'AppData\\Local\\FortniteGame\\Saved\\Demos\\' + fileName).mtime.getSeconds()
 
+                        if(fn_mins == 0)
+                        {
+                          fn_mins = '00'
+                        }
+                        else if(fn_mins == 1)
+                        {
+                          fn_mins = '01'
+                        }
+                        else if(fn_mins == 2)
+                        {
+                          fn_mins = '02'
+                        }
+                        else if(fn_mins == 3)
+                        {
+                          fn_mins = '03'
+                        }
+                        else if(fn_mins == 4)
+                        {
+                          fn_mins = '04'
+                        }
+                        else if(fn_mins == 5)
+                        {
+                          fn_mins = '05'
+                        }
+                        else if(fn_mins == 6)
+                        {
+                          fn_mins = '06'
+                        }
+                        else if(fn_mins == 7)
+                        {
+                          fn_mins = '07'
+                        }
+                        else if(fn_mins == 8)
+                        {
+                          fn_mins = '08'
+                        }
+                        else if(fn_mins == 9)
+                        {
+                          fn_mins = '09'
+                        }
+
+
+
+                        if(fn_hours == 13)
+                        {
+                          fn_hours = 1
+                          fn_secs += "PM"
+                        }
+                        else if(fn_hours == 14)
+                        {
+                          fn_hours = 2
+                          fn_secs += "PM"
+                        }
+                        else if(fn_hours == 15)
+                        {
+                          fn_hours = 3
+                          fn_secs += "PM"
+                        }
+                        else if(fn_hours == 16)
+                        {
+                          fn_hours = 4
+                          fn_secs += "PM"
+                        }
+                        else if(fn_hours == 17)
+                        {
+                          fn_hours = 5
+                          fn_secs += "PM"
+                        }
+                        else if(fn_hours == 18)
+                        {
+                          fn_hours = 6
+                          fn_secs += "PM"
+                        }
+                        else if(fn_hours == 19)
+                        {
+                          fn_hours = 7
+                          fn_secs += "PM"
+                        }
+                        else if(fn_hours == 20)
+                        {
+                          fn_hours = 8
+                          fn_secs += "PM"
+                        }
+                        else if(fn_hours == 21)
+                        {
+                          fn_hours = 9
+                          fn_secs += "PM"
+                        }
+                        else if(fn_hours == 22)
+                        {
+                          fn_hours = 10
+                          fn_secs += "PM"
+                        }
+                        else if(fn_hours == 23)
+                        {
+                          fn_hours = 11
+                          fn_secs += "PM"
+                        }
+                        else if(fn_hours == 24)
+                        {
+                          fn_hours = 12
+                          fn_secs += "PM"
+                        }
 
                         var date = ((fn_month+1) +'-'+ fn_day +'-'+ fn_year);
                         var time = fn_hours + ":" + fn_mins + ":" + fn_secs;

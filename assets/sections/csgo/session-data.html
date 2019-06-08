@@ -118,6 +118,110 @@
                         var csgo_mins = fs.statSync(testFolder + file).mtime.getMinutes()
                         var csgo_secs = fs.statSync(testFolder + file).mtime.getSeconds()
 
+                        if(csgo_mins == 0)
+                        {
+                          csgo_mins = '00'
+                        }
+                        else if(csgo_mins == 1)
+                        {
+                          csgo_mins = '01'
+                        }
+                        else if(csgo_mins == 2)
+                        {
+                          csgo_mins = '02'
+                        }
+                        else if(csgo_mins == 3)
+                        {
+                          csgo_mins = '03'
+                        }
+                        else if(csgo_mins == 4)
+                        {
+                          csgo_mins = '04'
+                        }
+                        else if(csgo_mins == 5)
+                        {
+                          csgo_mins = '05'
+                        }
+                        else if(csgo_mins == 6)
+                        {
+                          csgo_mins = '06'
+                        }
+                        else if(csgo_mins == 7)
+                        {
+                          csgo_mins = '07'
+                        }
+                        else if(csgo_mins == 8)
+                        {
+                          csgo_mins = '08'
+                        }
+                        else if(csgo_mins == 9)
+                        {
+                          csgo_mins = '09'
+                        }
+
+
+
+                        if(csgo_hours == 13)
+                        {
+                          csgo_hours = 1
+                          csgo_secs += "PM"
+                        }
+                        else if(csgo_hours == 14)
+                        {
+                          csgo_hours = 2
+                          csgo_secs += "PM"
+                        }
+                        else if(csgo_hours == 15)
+                        {
+                          csgo_hours = 3
+                          csgo_secs += "PM"
+                        }
+                        else if(csgo_hours == 16)
+                        {
+                          csgo_hours = 4
+                          csgo_secs += "PM"
+                        }
+                        else if(csgo_hours == 17)
+                        {
+                          csgo_hours = 5
+                          csgo_secs += "PM"
+                        }
+                        else if(csgo_hours == 18)
+                        {
+                          csgo_hours = 6
+                          csgo_secs += "PM"
+                        }
+                        else if(csgo_hours == 19)
+                        {
+                          csgo_hours = 7
+                          csgo_secs += "PM"
+                        }
+                        else if(csgo_hours == 20)
+                        {
+                          csgo_hours = 8
+                          csgo_secs += "PM"
+                        }
+                        else if(csgo_hours == 21)
+                        {
+                          csgo_hours = 9
+                          csgo_secs += "PM"
+                        }
+                        else if(csgo_hours == 22)
+                        {
+                          csgo_hours = 10
+                          csgo_secs += "PM"
+                        }
+                        else if(csgo_hours == 23)
+                        {
+                          csgo_hours = 11
+                          csgo_secs += "PM"
+                        }
+                        else if(csgo_hours == 24)
+                        {
+                          csgo_hours = 12
+                          csgo_secs += "PM"
+                        }
+
 
                         var date = ((csgo_month+1) +'-'+ csgo_day +'-'+ csgo_year);
                         var time = csgo_hours + ":" + csgo_mins + ":" + csgo_secs;
