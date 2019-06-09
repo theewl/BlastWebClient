@@ -16,6 +16,13 @@ module.exports =
                 //console.log(date)
                 //console.log(time)
 
+                let card
+
+                if(settings.get('active_game') == 'Fortnite')
+                    card = createTableFromDB(result[i], fields.slice(0, fields.length-2), time) // time is subject to change
+                else if(settings.get('active_game') == 'CS:GO')
+                    card = createTableFromDB(result[i], fields.slice(0, fields.length-1), time) // time is subject to change
+
                 if(date != currentDate) // new row
                 {
                     currentDate = date
@@ -40,7 +47,14 @@ module.exports =
                     row3 = createDiv("row")
                     col3 = createDiv("col-md-12")
 
-                    card = createTableFromDB(result[i], fields, time) // time is subject to change
+                    //fields.delete('id');
+                    //fields.delete('timestamp');
+                    //let card
+
+                    //if(settings.get('active_game') == 'Fortnite')
+                    //    card = createTableFromDB(result[i], fields.slice(0, fields.length-2), time) // time is subject to change
+                    //else if(settings.get('active_game') == 'CS:GO')
+                    //    card = createTableFromDB(result[i], fields.slice(0, fields.length-1), time) // time is subject to change
 
                     col3.appendChild(card)
                     row3.appendChild(col3)
@@ -63,7 +77,7 @@ module.exports =
                     row3 = createDiv("row")
                     col3 = createDiv("col-md-12")
 
-                    card = createTableFromDB(result[i], fields, time) // time is subject to change
+                    //card = createTableFromDB(result[i], fields, time) // time is subject to change
 
                     col3.appendChild(card)
                     row3.appendChild(col3)
@@ -224,7 +238,6 @@ function createTable(result, fields, name){
     console.log(fields)
     let i = 0
     for (var key in fields) {
-
         head = document.createElement("p")
         text = document.createTextNode(key)
         head.appendChild(text)
@@ -279,7 +292,7 @@ function createTableFromDB(result, fields, name) {
     // not taking timestamp into consideration (yet), which would determine how many tables per row
     // ideally we wouldn't have to copy/paste the for loop below
     //Doesnt work if odd # of fields
-    for (let j = 0; j <= fields.length/2; j++)
+    for (let j = 0; j < fields.length/2; j++)
     {
         let key = fields[j]['name']
 
@@ -301,7 +314,7 @@ function createTableFromDB(result, fields, name) {
     col5 = createDiv("col-md-6 leftLine")
 
     // right column table entries
-    for (let j = (fields.length / 2) + 1; j < fields.length; j++) {
+    for (let j = (fields.length / 2); j < fields.length; j++) {
         let key = fields[j]['name']
 
         head = document.createElement("p")
